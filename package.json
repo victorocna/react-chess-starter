@@ -1,7 +1,7 @@
 {
   "name": "react-chess-starter",
   "version": "0.1.0",
-  "description": "React chess starter project from Chess Coders",
+  "description": "Advanced chess components integration in React and Next.js projects",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -12,8 +12,7 @@
   },
   "keywords": [
     "react",
-    "nextjs",
-    "tailwindcss",
+    "chess",
     "starter"
   ],
   "author": "victorocna <victor@chesscoders.com> (https://chesscoders.com)",
