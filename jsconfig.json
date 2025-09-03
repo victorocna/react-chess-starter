@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components": ["components/index"],
+      "@components/*": ["components/*"],
+      "@functions": ["functions/index"],
+      "@functions/*": ["functions/*"],
+      "@hooks": ["hooks/index"],
+      "@hooks/*": ["hooks/*"],
+      "@lib": ["lib/index"],
+      "@lib/*": ["lib/*"],
+      "@site.config": ["site.config"]
+    }
+  }
+}
