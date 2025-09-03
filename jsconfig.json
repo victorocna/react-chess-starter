@@ -2,6 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@chess": ["chess/index"],
+      "@chess/*": ["chess/*"],
       "@components": ["components/index"],
       "@components/*": ["components/*"],
       "@functions": ["functions/index"],

@@ -13,11 +13,6 @@ module.exports = {
     'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
     'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
   ],
-  scripts: [
-    // eg: tracking scripts
-  ],
-  languages: [
-    'en', // add any other languages here
-    'ro',
-  ],
+  scripts: [],
+  fonts: ['/fonts/noto-chess.woff2'],
 };
