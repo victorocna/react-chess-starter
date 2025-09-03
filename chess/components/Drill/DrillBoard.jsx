@@ -1,5 +1,4 @@
-import { useChessContext } from '@chess/contexts/ChessContext';
-import { useDrillContext } from '@chess/contexts/DrillContext';
+import { useChessContext, useDrillContext } from '@chess/contexts';
 import { getNextMoment, getNextShape } from '@chess/functions/drill-helpers';
 import { badMove, replyMove, wasSolved } from '@chess/functions/puzzle-helpers';
 import { coffee } from '@functions';

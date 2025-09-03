@@ -1,5 +1,4 @@
-import { useChessContext } from '@chess/contexts/ChessContext';
-import { usePuzzleContext } from '@chess/contexts/PuzzleContext';
+import { useChessContext, usePuzzleContext } from '@chess/contexts';
 import { badMove, replyMove, wasSolved } from '@chess/functions/puzzle-helpers';
 import { coffee } from '@functions';
 import { isFunction } from 'lodash';
