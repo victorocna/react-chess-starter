@@ -36,7 +36,14 @@ TODO
 
 ## PGN editor
 
-TODO
+Every move inside the PGN editor has a context menu which is revealed on right click with these options:
+
+- Delete from here
+- Delete until here
+- Comment on this move
+- Annotate with glyphs
+- Promote variation
+- Copy mainline PGN
 
 ## Play against bots
 

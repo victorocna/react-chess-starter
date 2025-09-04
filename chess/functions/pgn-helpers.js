@@ -1,3 +1,5 @@
+import { momentsToPgn } from 'chess-moments';
+
 export const getMoveNumber = (fen) => {
   const split = fen.split(' ');
   const side = split[1];
@@ -44,4 +46,21 @@ export const getMoveSuffix = (fen) => {
   const dots = side === 'w' ? '...' : '.';
 
   return moveIndex + dots;
+};
+
+/**
+ * Get the mainline PGN from the given moments.
+ */
+export const getMainlinePgn = (moments) => {
+  if (!moments || moments.length === 0) {
+    return '';
+  }
+
+  // Filter out all variations (depth > 1) to keep only mainline moves
+  const mainlineMoments = moments.filter((moment) => moment.depth === 1);
+  if (mainlineMoments.length === 0) {
+    return '';
+  }
+
+  return momentsToPgn(mainlineMoments);
 };
