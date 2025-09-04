@@ -2,7 +2,32 @@
 
 Advanced chess components integration in React projects.
 
-Main components:
+## Packages (dependencies)
+
+- `chess-moments`
+- `next-chessground`
+
+### `chess-moments`
+
+This package has the core chess logic for PGN file management
+
+- transform a PGN file into "chess moments"
+- transform back "chess moments" into a PGN file
+- add move in a PGN file
+- promote mainline in a PGN file
+- get next/prev move in a PGN file
+- delete from/until move in a PGN file
+- move trainer
+
+### `next-chessground`
+
+This package has the core chess board logic
+
+- pawn promotion
+- theme options for board and pieces
+- undo and move functions useful in drills and puzzles
+
+## Main components
 
 - chess context
 - puzzles
@@ -11,16 +36,16 @@ Main components:
 - PGN editor
 - play against bots
 
-## Chess context
+### Chess context
 
 This React context has data about the initial FEN, initial turn, current FEN, chess history and user turn.
 Can be combined with other contexts that need chess related data.
 
-## Puzzles
+### Puzzles
 
 Puzzles also have alternative solutions for the first side to move. Any other sideline is ignored.
 
-## Drills
+### Drills
 
 Drills are puzzles with optional hints. Drills have 3 modes: arrow, square, puzzle.
 
@@ -30,11 +55,11 @@ Drills are puzzles with optional hints. Drills have 3 modes: arrow, square, puzz
 
 The mainline is extracted from PGN input data. Any other sideline is ignored.
 
-## PGN viewer
+### PGN viewer
 
 TODO
 
-## PGN editor
+### PGN editor
 
 Every move inside the PGN editor has a context menu which is revealed on right click with these options:
 
@@ -45,6 +70,6 @@ Every move inside the PGN editor has a context menu which is revealed on right c
 - Promote variation
 - Copy mainline PGN
 
-## Play against bots
+### Play against bots
 
 TODO
