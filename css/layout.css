@@ -1,3 +1,7 @@
 .top-right {
   @apply absolute flex justify-end items-start pointer-events-none;
 }
+.move-modal {
+  max-width: 20rem;
+  max-height: 10rem;
+}

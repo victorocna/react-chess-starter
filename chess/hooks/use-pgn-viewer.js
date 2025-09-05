@@ -161,6 +161,11 @@ const usePgnViewer = (pgn, options) => {
     };
   }, [goPrevMoment, goNextMoment, variations]);
 
+  // Create lastMove array from current moment's from/to properties
+  const lastMove = useMemo(() => {
+    return currentMoment?.from && currentMoment?.to ? [currentMoment.from, currentMoment.to] : null;
+  }, [currentMoment]);
+
   return {
     fen,
     pgn: pgnState,
@@ -168,6 +173,7 @@ const usePgnViewer = (pgn, options) => {
     moments,
     currentMoment,
     current: currentMoment,
+    lastMove,
     firstMoment,
     lastMoment,
     goPrevMoment,
