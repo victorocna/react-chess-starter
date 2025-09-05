@@ -3,10 +3,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#f5f5f5', // light background
-        secondary: '#e0e0e0', // lighter surface
-        accent: '#2976ff', // keep accent blue
-        tertiary: '#f9f9f9', // white surface
+        primary: '#f5f5f5',
+        secondary: '#e0e0e0',
+        accent: '#2976ff',
+        tertiary: '#222',
       },
       fontFamily: {
         chess: '"Noto Chess", "Noto Sans", sans-serif',

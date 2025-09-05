@@ -37,7 +37,7 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
         {move && (
           <>
             {shouldShowMoveNumber && (
-              <div className="col-span-2 flex items-center justify-center bg-tertiary text-gray-500 border-gray-600">
+              <div className="col-span-2 flex items-center justify-center bg-primary border-gray-600">
                 <p>{getMoveNumber(fen)}.</p>
               </div>
             )}
@@ -87,7 +87,7 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
         {move && (
           <div
             ref={(el) => (momentsDictionaryRef.current[moment.index] = el)}
-            className="inline-block"
+            className="inline"
             onClick={() => onMoveClick(moment)}
           >
             <Move isActive={isActive} previous={previous} suffix={suffix} {...moment} />
@@ -107,7 +107,7 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
       block[0].previous = array[index - 1][array[index - 1].length - 1];
     }
     const isLowestDepth = block[0].depth === 1;
-    const paddingLeft = `${(block[0].depth - 1) * 0.75}rem`;
+    const spacing = `${(block[0].depth - 1) * 0.75}rem`;
 
     return (
       <>
@@ -116,7 +116,11 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
             {block.map(showMomentAsGrid)}
           </div>
         ) : (
-          <div key={index} className="text-wrap my-2" style={{ paddingLeft }}>
+          <div
+            key={index}
+            className="flex flex-wrap items-start gap-1 py-1"
+            style={{ marginLeft: spacing }}
+          >
             {block.map(showMomentAsBlock)}
           </div>
         )}
@@ -127,7 +131,7 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
   return (
     <div
       ref={containerRef}
-      className="flex-1 overflow-y-auto bg-secondary text-gray-300 text-sm leading-relaxed min-h-0"
+      className="flex-1 overflow-y-auto bg-secondary text-tertiary text-sm leading-relaxed min-h-0"
     >
       <div className="h-full flex flex-col">
         {tree.length === 0 ? (
