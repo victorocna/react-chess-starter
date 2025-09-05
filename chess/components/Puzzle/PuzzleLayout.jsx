@@ -1,12 +1,12 @@
 import { useChessContext, usePuzzleContext } from '@chess/contexts';
-import useMainline from '@chess/hooks/use-mainline';
-import { useEffect } from 'react';
+import { flat } from 'chess-moments';
+import { useEffect, useMemo } from 'react';
 import FeedbackIcon from '../FeedbackIcon';
 import MoveList from '../MoveList';
 import PuzzleBoard from './PuzzleBoard';
 
 const PuzzleLayout = ({ pgn, onComplete, showMoves }) => {
-  const { moves } = useMainline(pgn);
+  const moves = useMemo(() => flat(pgn), [pgn]);
 
   const { history, initialFen, initialTurn } = useChessContext();
   const { feedback, lastMove, setSolution } = usePuzzleContext();

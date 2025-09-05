@@ -16,9 +16,6 @@ export const PuzzleProvider = ({ children }) => {
   const [viewOnly, setViewOnly] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  // Puzzle alternative solutions
-  const [alts, setAlts] = useState([]);
-
   // Update feedback and lastMove when history changes
   useEffect(() => {
     if (isUserTurn && size(history)) {
@@ -42,8 +39,6 @@ export const PuzzleProvider = ({ children }) => {
     feedback,
     lastMove,
     isCompleted,
-    alts,
-    setAlts,
     viewOnly,
     setViewOnly,
   };
