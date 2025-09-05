@@ -6,9 +6,9 @@ import MoveList from '../MoveList';
 import DrillBoard from './DrillBoard';
 
 const DrillLayout = ({ pgn, onComplete, showMoves }) => {
-  const { moves } = useMainline(pgn);
-
   const { history, initialFen, initialTurn } = useChessContext();
+  const { moves } = useMainline(pgn, initialFen);
+
   const { feedback, lastMove, setSolution } = useDrillContext();
   useEffect(() => setSolution(moves), [moves]);
 
