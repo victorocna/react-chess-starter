@@ -7,7 +7,7 @@ import { last } from 'lodash';
 export const goodMove = (history, moments) => {
   const currentFen = last(history)?.after;
   for (const moment of moments) {
-    if (moment.fen === currentFen) {
+    if (moment?.fen === currentFen) {
       return true;
     }
   }
@@ -30,7 +30,11 @@ export const replyMove = (history, moments) => {
   const currentMove = moments.find((moment) => moment.fen === currentFen);
   // Find the closest next move based on the current move
   const nextMove = moments.find((moment) => {
-    return moment.move && moment.depth === currentMove.depth && moment.index > currentMove.index;
+    return (
+      moment?.move && //
+      moment?.depth === currentMove?.depth &&
+      moment?.index > currentMove?.index
+    );
   });
   return nextMove;
 };
