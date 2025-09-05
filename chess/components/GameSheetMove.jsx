@@ -1,6 +1,6 @@
 import { classnames } from '@lib';
 
-const Move = ({ isCurrent, move }) => {
+const GameSheetMove = ({ isCurrent, move }) => {
   return (
     <div
       className={classnames(
@@ -13,4 +13,4 @@ const Move = ({ isCurrent, move }) => {
   );
 };
 
-export default Move;
+export default GameSheetMove;

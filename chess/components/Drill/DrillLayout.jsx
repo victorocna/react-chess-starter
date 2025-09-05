@@ -1,8 +1,7 @@
 import { useChessContext, useDrillContext } from '@chess/contexts';
 import { useMainline } from '@chess/hooks';
 import { useEffect } from 'react';
-import FeedbackIcon from '../FeedbackIcon';
-import MoveList from '../MoveList';
+import { FeedbackIcon, GameSheet } from '..';
 import DrillBoard from './DrillBoard';
 
 const DrillLayout = ({ pgn, onComplete, showMoves }) => {
@@ -18,7 +17,7 @@ const DrillLayout = ({ pgn, onComplete, showMoves }) => {
         <DrillBoard fen={initialFen} moves={moves} onComplete={onComplete} />
         <FeedbackIcon firstTurn={initialTurn} feedback={feedback} lastMove={lastMove} />
       </div>
-      {showMoves && <MoveList history={history} initialFen={initialFen} />}
+      {showMoves && <GameSheet history={history} initialFen={initialFen} />}
     </>
   );
 };

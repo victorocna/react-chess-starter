@@ -1,8 +1,7 @@
 import { useChessContext, usePuzzleContext } from '@chess/contexts';
 import { flat } from 'chess-moments';
 import { useEffect, useMemo } from 'react';
-import FeedbackIcon from '../FeedbackIcon';
-import MoveList from '../MoveList';
+import { FeedbackIcon, GameSheet } from '..';
 import PuzzleBoard from './PuzzleBoard';
 
 const PuzzleLayout = ({ pgn, onComplete, showMoves }) => {
@@ -18,7 +17,7 @@ const PuzzleLayout = ({ pgn, onComplete, showMoves }) => {
         <PuzzleBoard fen={initialFen} moves={moves} onComplete={onComplete} />
         <FeedbackIcon firstTurn={initialTurn} feedback={feedback} lastMove={lastMove} />
       </div>
-      {showMoves && <MoveList history={history} initialFen={initialFen} />}
+      {showMoves && <GameSheet history={history} initialFen={initialFen} />}
     </>
   );
 };

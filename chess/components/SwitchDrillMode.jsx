@@ -7,10 +7,10 @@ const SwitchDrillMode = () => {
 
   return (
     <div className="flex items-center w-full gap-2">
-      <div className="flex flex-wrap gap-1 items-center justify-center rounded bg-tertiary">
+      <div className="flex flex-wrap gap-1 items-center justify-center rounded bg-primary">
         <Button
           className={classnames(
-            'button mini tertiary flex items-center px-2 py-2 rounded-l',
+            'button mini primary flex items-center px-2 py-2 rounded-l',
             mode === 'arrows' && 'bg-accent text-white'
           )}
           onClick={() => setMode('arrows')}
@@ -20,7 +20,7 @@ const SwitchDrillMode = () => {
         </Button>
         <Button
           className={classnames(
-            'button mini tertiary flex items-center px-2 py-2',
+            'button mini primary flex items-center px-2 py-2',
             mode === 'squares' && 'bg-accent text-white'
           )}
           onClick={() => setMode('squares')}
@@ -30,7 +30,7 @@ const SwitchDrillMode = () => {
         </Button>
         <Button
           className={classnames(
-            'button mini tertiary flex items-center px-2 py-2 rounded-r',
+            'button mini primary flex items-center px-2 py-2 rounded-r',
             mode === 'nohint' && 'bg-accent text-white'
           )}
           onClick={() => setMode('nohint')}
