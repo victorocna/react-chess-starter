@@ -3,7 +3,7 @@ import { Chess } from 'chess.js';
 /**
  * Computes an arrow shape based on the current FEN and a move string.
  */
-export const getMoveArrow = (fen, moveString) => {
+const getMoveArrow = (fen, moveString) => {
   try {
     if (!fen || !moveString) return null;
     const chess = new Chess(fen);
@@ -17,3 +17,5 @@ export const getMoveArrow = (fen, moveString) => {
     return null;
   }
 };
+
+export default getMoveArrow;

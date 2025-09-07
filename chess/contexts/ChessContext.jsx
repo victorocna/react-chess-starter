@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { parseFen } from '../functions/fen-helpers';
+import { parseFen } from '../functions';
 
 const ChessContext = createContext();
 
@@ -34,9 +34,7 @@ export const ChessProvider = ({ children, fen }) => {
     saveHistory,
   };
 
-  return (
-    <ChessContext.Provider value={value}>{children}</ChessContext.Provider>
-  );
+  return <ChessContext.Provider value={value}>{children}</ChessContext.Provider>;
 };
 
 export const useChessContext = () => {

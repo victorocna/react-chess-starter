@@ -1,4 +1,4 @@
-import { parseFen } from '@chess/functions/fen-helpers';
+import { parseFen } from '@chess/functions';
 import { isEmpty } from 'lodash';
 import EmptyGameSheet from './EmptyGameSheet';
 import GameSheetMove from './GameSheetMove';

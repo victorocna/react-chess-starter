@@ -1,4 +1,4 @@
-import { getMoveSuffix } from '@chess/functions/pgn-helpers';
+import { getMoveSuffix } from '@chess/functions';
 import { classnames } from '@lib';
 import { isFunction } from 'lodash';
 import { useEffect, useRef, useState } from 'react';

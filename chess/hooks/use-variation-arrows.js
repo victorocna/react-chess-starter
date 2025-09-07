@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { getMoveArrow } from '../functions/shape-helpers';
+import { getMoveArrow } from '../functions';
 
 /**
  * Custom hook that returns the variation arrow.

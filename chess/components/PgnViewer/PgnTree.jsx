@@ -1,4 +1,4 @@
-import { getMoveNumber, isMoveActive } from '@chess/functions/pgn-helpers';
+import { getMoveNumber, isMoveActive } from '@chess/functions';
 import { classnames } from '@lib';
 import { omit } from 'lodash';
 import { Fragment, useEffect, useRef } from 'react';

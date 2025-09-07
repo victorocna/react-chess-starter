@@ -1,6 +1,6 @@
 import { last, size } from 'lodash';
 import { createContext, useContext, useEffect, useState } from 'react';
-import { goodMove } from '../functions/puzzle-helpers';
+import { goodMove } from '../functions';
 import { useChessContext } from './ChessContext';
 
 const DrillContext = createContext();

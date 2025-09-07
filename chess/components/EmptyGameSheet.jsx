@@ -1,4 +1,4 @@
-import { parseFen } from '@chess/functions/fen-helpers';
+import { parseFen } from '@chess/functions';
 
 const EmptyGameSheet = ({ initialFen }) => {
   const fenParts = parseFen(initialFen);

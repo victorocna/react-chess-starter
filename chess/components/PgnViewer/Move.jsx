@@ -1,4 +1,4 @@
-import { getMoveSuffix, showMoveIndex } from '@chess/functions/pgn-helpers';
+import { getMoveSuffix, showMoveIndex } from '@chess/functions';
 import { classnames } from '@lib';
 
 const Move = ({ move, fen, depth, previous, isActive, onClick }) => {
