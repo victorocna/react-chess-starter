@@ -44,7 +44,7 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
     >
       {moment && (
         <div className="px-3 py-2 bg-primary border-b">
-          <div className="text-center text-black font-semibold">
+          <div className="text-center text-black font-semibold font-chess">
             {parseFen(moment.fen)?.fullmoveNumber || ''}. {moment.move}
           </div>
         </div>
