@@ -1,0 +1,34 @@
+{
+  "name": "React Chess Starter",
+  "short_name": "React Chess Starter",
+  "description": "Advanced chess components integration in React and Next.js projects",
+  "version": "0.1.0",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["games", "education", "utilities"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "shortcuts": [],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "iarc_rating_id": "",
+  "dir": "ltr"
+}

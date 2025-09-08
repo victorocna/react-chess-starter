@@ -1,10 +1,7 @@
 module.exports = {
-  sitename: 'Your Awesome App',
-  title: 'Your Awesome App',
-  description: `
-  Starter template for React and Next.js projects packed with features like authentication,
-  custom hooks, Tailwind support and many more.
-  `,
+  sitename: 'React Chess Starter',
+  title: 'React Chess Starter',
+  description: 'Advanced chess components integration in React and Next.js projects',
   baseurl: `${process.env.APP_BASE_URL}`,
   image: `${process.env.APP_BASE_URL}/images/logo.png`,
   stylesheets: [
