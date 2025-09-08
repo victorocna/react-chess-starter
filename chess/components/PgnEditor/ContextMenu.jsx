@@ -1,14 +1,10 @@
-import { Button } from '@components';
-import { useEffect, useRef } from 'react';
 import { contextMenuItems } from '@chess/constants/context-menu-items';
+import parseFen from '@chess/functions/parse-fen';
+import { Button } from '@components';
 import { useOnClickOutside } from '@hooks';
+import { useEffect, useRef } from 'react';
 
 const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
-  const getMoveNumber = (fen) => {
-    if (!fen) return '';
-    const parts = fen.split(' ');
-    return parts[5] || '';
-  };
   const menuRef = useRef();
 
   useOnClickOutside(menuRef, () => {
@@ -16,7 +12,6 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
       onClose();
     }
   });
-
 
   useEffect(() => {
     const handleEscape = (event) => {
@@ -50,7 +45,7 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
       {moment && (
         <div className="px-3 py-2 bg-primary border-b">
           <div className="text-center text-black font-semibold">
-            {getMoveNumber(moment.fen)}. {moment.move}
+            {parseFen(moment.fen)?.fullmoveNumber || ''}. {moment.move}
           </div>
         </div>
       )}
