@@ -1,6 +1,6 @@
 import { AddAnnotationModal, AddCommentModal } from '.';
 
-const Modals = ({ commentModal, annotationModal }) => {
+const PgnEditorModals = ({ commentModal, annotationModal }) => {
   return (
     <>
       <AddCommentModal
@@ -19,4 +19,4 @@ const Modals = ({ commentModal, annotationModal }) => {
   );
 };
 
-export default Modals;
+export default PgnEditorModals;

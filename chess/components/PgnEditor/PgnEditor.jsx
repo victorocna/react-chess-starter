@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ContextMenu, Modals } from '.';
+import { ContextMenu, PgnEditorModals } from '.';
 import useContextActions from '@chess/hooks/use-context-actions';
 import { PgnTree } from '../PgnViewer';
 
-const Editor = ({ tree, current, onMoveClick, setTree }) => {
+const PgnEditor = ({ tree, current, onMoveClick, setTree }) => {
   const { handleContextAction, commentModal, annotationModal } = useContextActions(tree, setTree);
 
   const [contextMenu, setContextMenu] = useState({
@@ -45,9 +45,9 @@ const Editor = ({ tree, current, onMoveClick, setTree }) => {
         onAction={handleAction}
         onClose={handleCloseContextMenu}
       />
-      <Modals commentModal={commentModal} annotationModal={annotationModal} />
+      <PgnEditorModals commentModal={commentModal} annotationModal={annotationModal} />
     </>
   );
 };
 
-export default Editor;
+export default PgnEditor;

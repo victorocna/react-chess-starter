@@ -1,6 +1,6 @@
 import { useEqualHeight, usePgnViewer, useShapes } from '@chess/hooks';
 import { NextChessground } from 'next-chessground';
-import { Editor } from '.';
+import { PgnEditor } from '.';
 
 const PgnEditorLayout = ({ pgn }) => {
   const { tree, current, lastMove, goToMoment, onUserMove, setTree } = usePgnViewer(pgn);
@@ -21,7 +21,7 @@ const PgnEditorLayout = ({ pgn }) => {
       </div>
       <div className="relative overflow-hidden">
         <div ref={targetRef} className="overflow-y-auto rounded">
-          <Editor tree={tree} current={current} onMoveClick={goToMoment} setTree={setTree} />
+          <PgnEditor tree={tree} current={current} onMoveClick={goToMoment} setTree={setTree} />
         </div>
       </div>
     </>
