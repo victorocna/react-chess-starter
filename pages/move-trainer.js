@@ -7,7 +7,7 @@ const Page = () => {
   const { key, fen, setPgn } = useLocalPgn();
 
   return (
-    <Layout key={key} title="Play computer" button={<PgnFileLoader onPgnLoad={setPgn} />}>
+    <Layout key={key} title="Move trainer" button={<PgnFileLoader onPgnLoad={setPgn} />}>
       <div className="grid md:grid-cols-2 gap-12 bg-white p-6 rounded-md border">
         <NextChessground fen={fen} />
         <h2 className="text-lg font-semibold">Coming soon</h2>

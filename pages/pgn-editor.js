@@ -8,7 +8,7 @@ const Page = () => {
   const { pgn, key, fen, setPgn } = useLocalPgn();
 
   return (
-    <Layout key={key} title="Pgn Editor" button={<PgnFileLoader onPgnLoad={setPgn} />}>
+    <Layout key={key} title="PGN Editor" button={<PgnFileLoader onPgnLoad={setPgn} />}>
       <ChessProvider fen={fen}>
         <PuzzleProvider>
           <div className="grid md:grid-cols-2 gap-12 bg-white p-6 rounded-md border">
