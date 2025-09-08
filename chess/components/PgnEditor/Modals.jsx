@@ -7,13 +7,13 @@ const Modals = ({ commentModal, annotationModal }) => {
         isOpen={commentModal.isOpen}
         hide={commentModal.hide}
         moment={commentModal.moment}
-        onAddComment={commentModal.handleAddComment}
+        onAddComment={commentModal.handleSubmit}
       />
       <AddAnnotationModal
         isOpen={annotationModal.isOpen}
         hide={annotationModal.hide}
         moment={annotationModal.moment}
-        onAddAnnotation={annotationModal.handleAddAnnotation}
+        onAddAnnotation={annotationModal.handleSubmit}
       />
     </>
   );

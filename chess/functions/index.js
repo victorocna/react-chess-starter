@@ -1,3 +1,5 @@
+export { default as addAnnotation } from './add-annotation';
+export { default as addComment } from './add-comment';
 export { default as badMove } from './bad-move';
 export { default as checkDrillMove } from './check-drill-move';
 export { default as copyMainlinePgn } from './copy-mainline-pgn';
