@@ -1,5 +1,5 @@
 import { last, size } from 'lodash';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { goodMove, wasSolved } from '../functions';
 import { useChessContext } from './ChessContext';
 
@@ -7,7 +7,7 @@ const PuzzleContext = createContext();
 
 export const PuzzleProvider = ({ children }) => {
   // Chess context
-  const { isUserTurn, history } = useChessContext();
+  const { isUserTurn, history, currentFen } = useChessContext();
 
   // Puzzle states
   const [solution, setSolution] = useState(null);
@@ -33,7 +33,14 @@ export const PuzzleProvider = ({ children }) => {
     }
   }, [history]);
 
+  // Computed shapes for the current position
+  const shapes = useMemo(() => {
+    const currentMove = solution?.find((m) => m.fen === currentFen);
+    return currentMove?.shapes || [];
+  }, [currentFen, solution]);
+
   const value = {
+    shapes,
     solution,
     setSolution,
     feedback,

@@ -5,11 +5,11 @@ import { isFunction } from 'lodash';
 import { NextChessground } from 'next-chessground';
 import { useRef } from 'react';
 
-const PuzzleBoard = ({ fen, moves, shapes, onComplete }) => {
+const PuzzleBoard = ({ fen, moves, onComplete }) => {
   const ref = useRef();
 
   const { saveHistory, isUserTurn } = useChessContext();
-  const { viewOnly, setViewOnly } = usePuzzleContext();
+  const { viewOnly, setViewOnly, shapes } = usePuzzleContext();
 
   const handleMove = async (chess) => {
     saveHistory(chess);

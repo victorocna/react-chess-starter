@@ -5,11 +5,11 @@ import { isFunction } from 'lodash';
 import { NextChessground } from 'next-chessground';
 import { useMemo, useRef } from 'react';
 
-const DrillBoard = ({ fen, moves, shapes, onComplete }) => {
+const DrillBoard = ({ fen, moves, onComplete }) => {
   const ref = useRef();
 
   const { currentFen, saveHistory, isUserTurn } = useChessContext();
-  const { mode, viewOnly, setViewOnly } = useDrillContext();
+  const { mode, viewOnly, setViewOnly, shapes } = useDrillContext();
 
   const handleMove = async (chess) => {
     saveHistory(chess);
