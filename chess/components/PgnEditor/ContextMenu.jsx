@@ -1,5 +1,5 @@
 import { contextMenuItems } from '@chess/constants/context-menu-items';
-import parseFen from '@chess/functions/parse-fen';
+import { parseFen } from '@chess/functions';
 import { Button } from '@components';
 import { useOnClickOutside } from '@hooks';
 import { useEffect, useRef } from 'react';
@@ -19,11 +19,9 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
         onClose();
       }
     };
-
     if (isVisible) {
       document.addEventListener('keydown', handleEscape);
     }
-
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
@@ -34,7 +32,9 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
     onClose();
   };
 
-  if (!isVisible) return null;
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div

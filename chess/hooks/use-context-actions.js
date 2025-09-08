@@ -14,7 +14,9 @@ const useContextActions = (tree, setTree) => {
   const [annotationModal, setAnnotationModal] = useState({ isOpen: false, moment: null });
 
   const handleContextAction = (action, moment) => {
-    if (!moment || !tree) return;
+    if (!moment || !tree) {
+      return;
+    }
 
     switch (action) {
       case 'delete-from': {
@@ -63,7 +65,9 @@ const useContextActions = (tree, setTree) => {
   };
 
   const handleAddComment = (comment) => {
-    if (!commentModal.moment || !comment?.trim()) return;
+    if (!commentModal.moment || !comment?.trim()) {
+      return;
+    }
 
     const updatedTree = addComment(tree, commentModal.moment, comment);
     setTree(updatedTree);
@@ -71,7 +75,9 @@ const useContextActions = (tree, setTree) => {
   };
 
   const handleAddAnnotation = (annotations) => {
-    if (!annotationModal.moment || !annotations) return;
+    if (!annotationModal.moment || !annotations) {
+      return;
+    }
 
     const updatedTree = addAnnotation(tree, annotationModal.moment, annotations);
     setTree(updatedTree);

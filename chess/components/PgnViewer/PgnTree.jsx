@@ -2,7 +2,7 @@ import { getMoveNumber, isMoveActive } from '@chess/functions';
 import { classnames } from '@lib';
 import { Fragment, useEffect, useRef } from 'react';
 import { Comment, Move, Shape } from '../PgnViewer';
-import { omit } from 'lodash';
+import { isFunction, omit } from 'lodash';
 
 const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   const containerRef = useRef();
@@ -32,7 +32,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
 
     // Handle optional right-click event
     const handleRightClick = (event) => {
-      if (typeof onRightClick === 'function') {
+      if (isFunction(onRightClick)) {
         onRightClick(event, moment);
       }
     };
@@ -90,7 +90,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
 
     // Handle optional right-click event
     const handleRightClick = (event) => {
-      if (typeof onRightClick === 'function') {
+      if (isFunction(onRightClick)) {
         onRightClick(event, moment);
       }
     };

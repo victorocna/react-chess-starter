@@ -1,5 +1,7 @@
 const addAnnotation = (tree, moment, annotations) => {
-  if (!tree || !moment || !annotations) return tree;
+  if (!tree || !moment || !annotations) {
+    return tree;
+  }
 
   // Create suffix from annotations
   const suffix = [
@@ -10,9 +12,15 @@ const addAnnotation = (tree, moment, annotations) => {
     .filter(Boolean)
     .join('');
 
-  return tree.map((branch) =>
-    branch.map((m) => (m.index === moment.index ? { ...m, suffix: suffix || undefined } : m))
-  );
+  return tree.map((branch) => {
+    return branch.map((m) => {
+      // Update only the targeted moment
+      if (m.index === moment.index && suffix) {
+        m.suffix = suffix;
+      }
+      return m;
+    });
+  });
 };
 
 export default addAnnotation;
