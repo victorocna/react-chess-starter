@@ -1,6 +1,3 @@
-import { tree as chessTree, momentsToPgn } from 'chess-moments';
-import { flatten } from 'lodash';
-
 const addAnnotation = (tree, moment, annotations) => {
   if (!tree || !moment || !annotations) return tree;
 
@@ -13,13 +10,9 @@ const addAnnotation = (tree, moment, annotations) => {
     .filter(Boolean)
     .join('');
 
-  const moments = flatten(tree);
-  const updatedMoments = moments.map((m) =>
-    m.index === moment.index ? { ...m, suffix: suffix || undefined } : m
+  return tree.map((branch) =>
+    branch.map((m) => (m.index === moment.index ? { ...m, suffix: suffix || undefined } : m))
   );
-
-  const pgn = momentsToPgn(updatedMoments);
-  return chessTree(pgn);
 };
 
 export default addAnnotation;
