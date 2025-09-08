@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { ContextMenu, Modals, PgnTreeEditor } from '.';
+import { ContextMenu, Modals } from '.';
 import useContextActions from '@chess/hooks/use-context-actions';
+import { PgnTree } from '../PgnViewer';
 
 const Editor = ({ tree, current, onMoveClick, setTree }) => {
   const { handleContextAction, commentModal, annotationModal } = useContextActions(tree, setTree);
@@ -31,7 +32,7 @@ const Editor = ({ tree, current, onMoveClick, setTree }) => {
 
   return (
     <>
-      <PgnTreeEditor
+      <PgnTree
         tree={tree}
         current={current}
         onMoveClick={onMoveClick}

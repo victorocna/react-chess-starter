@@ -1,12 +1,10 @@
 import { getMoveNumber, isMoveActive } from '@chess/functions';
 import { classnames } from '@lib';
-import { omit } from 'lodash';
 import { Fragment, useEffect, useRef } from 'react';
-import Comment from './Comment';
-import Move from './Move';
-import Shape from './Shape';
+import { Comment, Move, Shape } from '../PgnViewer';
+import { omit } from 'lodash';
 
-const PgnTree = ({ tree, current, onMoveClick }) => {
+const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   const containerRef = useRef();
   const momentsDictionaryRef = useRef({});
 
@@ -32,6 +30,13 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
       (!isWhiteMove && (!previous?.move || previous?.comment));
     const shouldShowMoveNumber = move && (isWhiteMove || shouldShowAddOn);
 
+    // Handle optional right-click event
+    const handleRightClick = (event) => {
+      if (typeof onRightClick === 'function') {
+        onRightClick(event, moment);
+      }
+    };
+
     return (
       <Fragment key={`${move}-${fen}-${index}`}>
         {move && (
@@ -53,6 +58,7 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
                 isActive ? 'bg-accent text-white font-bold' : 'bg-secondary'
               )}
               onClick={() => onMoveClick(moment)}
+              onContextMenu={handleRightClick}
             >
               <span className="font-chess">{move}</span>
               {suffix && <span className="ml-1 font-bold text-lg text-green-500">{suffix}</span>}
@@ -82,6 +88,13 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
     }
     const isActive = isMoveActive(current, moment);
 
+    // Handle optional right-click event
+    const handleRightClick = (event) => {
+      if (typeof onRightClick === 'function') {
+        onRightClick(event, moment);
+      }
+    };
+
     return (
       <Fragment key={`${move}-${fen}-${index}`}>
         {move && (
@@ -89,6 +102,7 @@ const PgnTree = ({ tree, current, onMoveClick }) => {
             ref={(el) => (momentsDictionaryRef.current[moment.index] = el)}
             className="inline"
             onClick={() => onMoveClick(moment)}
+            onContextMenu={handleRightClick}
           >
             <Move isActive={isActive} previous={previous} suffix={suffix} {...moment} />
           </div>

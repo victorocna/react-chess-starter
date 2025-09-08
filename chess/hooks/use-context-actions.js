@@ -32,12 +32,7 @@ const useContextActions = (tree, setTree) => {
       case 'copy': {
         const moments = flatten(tree);
         const mainlinePgn = copyMainlinePgn(moments);
-        navigator.clipboard
-          .writeText(mainlinePgn)
-          .then(() => {})
-          .catch((err) => {
-            console.error('Failed to copy PGN to clipboard:', err);
-          });
+        navigator.clipboard.writeText(mainlinePgn);
         break;
       }
 
