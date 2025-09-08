@@ -11,6 +11,7 @@ export { default as getNextMoment } from './get-next-moment';
 export { default as getNextShape } from './get-next-shape';
 export { default as goodMove } from './good-move';
 export { default as isMoveActive } from './is-move-active';
+export { default as parseExistingAnnotations } from './parse-existing-annotations';
 export { default as parseFen } from './parse-fen';
 export { default as replyMove } from './reply-move';
 export { default as showMoveIndex } from './show-move-index';
