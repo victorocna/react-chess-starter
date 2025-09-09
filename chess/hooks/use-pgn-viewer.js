@@ -170,6 +170,7 @@ const usePgnViewer = (pgn, options) => {
     fen,
     pgn: pgnState,
     tree: treeState,
+    setTree,
     moments,
     currentMoment,
     current: currentMoment,

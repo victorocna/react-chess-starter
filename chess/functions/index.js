@@ -1,3 +1,5 @@
+export { default as addAnnotation } from './add-annotation';
+export { default as addComment } from './add-comment';
 export { default as badMove } from './bad-move';
 export { default as checkDrillMove } from './check-drill-move';
 export { default as copyMainlinePgn } from './copy-mainline-pgn';
@@ -12,6 +14,7 @@ export { default as getNextShape } from './get-next-shape';
 export { default as goodMove } from './good-move';
 export { default as isMoveActive } from './is-move-active';
 export { default as isValidPgn } from './is-valid-pgn';
+export { default as parseExistingAnnotations } from './parse-existing-annotations';
 export { default as parseFen } from './parse-fen';
 export { default as normalizePgn } from './normalize-pgn';
 export { default as pgnSplit } from './pgn-split';

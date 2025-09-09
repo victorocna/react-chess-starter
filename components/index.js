@@ -26,6 +26,7 @@ export { default as Price } from './Price';
 export { default as ScreenSizeInfo } from './ScreenSizeInfo';
 export { default as ShowMore } from './ShowMore';
 export { default as Spinner } from './Spinner';
+export { default as Textarea } from './Textarea';
 export { default as Time } from './Time';
 export { default as Toaster } from './Toaster';
 export { default as Toggle } from './Toggle';
