@@ -2,6 +2,7 @@ export { default as useArray } from './use-array';
 export { default as useChildren } from './use-children';
 export { default as useCollapsible } from './use-collapsible';
 export { default as useCombobox } from './use-combobox';
+export { default as useContextMenu } from './use-context-menu';
 export { default as useDebounce } from './use-debounce';
 export { default as useDisclosure } from './use-disclosure';
 export { default as useDropdown } from './use-dropdown';

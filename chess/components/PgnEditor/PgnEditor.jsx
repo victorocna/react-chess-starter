@@ -1,6 +1,6 @@
+import { useContextActions } from '@chess/hooks';
 import { useState } from 'react';
 import { ContextMenu, PgnEditorModals } from '.';
-import useContextActions from '@chess/hooks/use-context-actions';
 import { PgnTree } from '../PgnViewer';
 
 const PgnEditor = ({ tree, current, onMoveClick, setTree }) => {

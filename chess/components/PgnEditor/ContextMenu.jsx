@@ -1,13 +1,13 @@
 import { contextMenuItems } from '@chess/constants/context-menu-items';
 import { parseFen } from '@chess/functions';
 import { Button } from '@components';
-import { useOnClickOutside } from '@hooks';
-import { useEffect, useRef } from 'react';
+import { useContextMenu, useOnClickOutside } from '@hooks';
+import { useEffect } from 'react';
 
 const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
-  const menuRef = useRef();
+  const { elementRef } = useContextMenu(isVisible, position);
 
-  useOnClickOutside(menuRef, () => {
+  useOnClickOutside(elementRef, () => {
     if (isVisible) {
       onClose();
     }
@@ -38,9 +38,9 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
 
   return (
     <div
-      ref={menuRef}
+      ref={elementRef}
       className="fixed z-50 bg-secondary border shadow-lg min-w-48"
-      style={{ left: position.x, top: position.y }}
+      style={{ visibility: isVisible ? 'visible' : 'hidden' }}
     >
       {moment && (
         <div className="px-3 py-2 bg-primary border-b">
