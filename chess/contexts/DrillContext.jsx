@@ -1,5 +1,5 @@
 import { last, size } from 'lodash';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { goodMove } from '../functions';
 import { useChessContext } from './ChessContext';
 
@@ -7,7 +7,7 @@ const DrillContext = createContext();
 
 export const DrillProvider = ({ children, mode: initialMode }) => {
   // Chess context
-  const { isUserTurn, history } = useChessContext();
+  const { isUserTurn, history, currentFen } = useChessContext();
 
   // Drill states
   const [solution, setSolution] = useState(null);
@@ -31,9 +31,16 @@ export const DrillProvider = ({ children, mode: initialMode }) => {
     }
   }, [history]);
 
+  // Computed shapes for the current position
+  const shapes = useMemo(() => {
+    const currentMove = solution?.find((m) => m.fen === currentFen);
+    return currentMove?.shapes || [];
+  }, [currentFen, solution]);
+
   const value = {
     mode,
     setMode,
+    shapes,
     solution,
     setSolution,
     feedback,
