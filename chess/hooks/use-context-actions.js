@@ -5,7 +5,7 @@ import {
   deleteFrom,
   deleteUntil,
 } from '@chess/functions';
-import { tree as chessTree, momentsToPgn, promoteMainline } from 'chess-moments';
+import { promoteMainlineTree } from 'chess-moments';
 import { flatten } from 'lodash';
 import { useState } from 'react';
 
@@ -39,12 +39,7 @@ const useContextActions = (tree, setTree) => {
       }
 
       case 'promote': {
-        const moments = flatten(tree);
-        const promotedMoments = promoteMainline(moments, moment);
-
-        // Convert back to PGN and then to proper tree structure
-        const pgn = momentsToPgn(promotedMoments);
-        const updatedTree = chessTree(pgn);
+        const updatedTree = promoteMainlineTree(tree, moment);
         setTree(updatedTree);
         break;
       }
