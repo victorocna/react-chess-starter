@@ -11,7 +11,7 @@ export const PuzzleProvider = ({ children }) => {
 
   // Puzzle states
   const [solution, setSolution] = useState(null);
-  const [feedback, setFeedback] = useState(null);
+  const [feedback, setFeedback] = useState('start');
   const [lastMove, setLastMove] = useState(null);
   const [viewOnly, setViewOnly] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -19,16 +19,17 @@ export const PuzzleProvider = ({ children }) => {
   // Update feedback and lastMove when history changes
   useEffect(() => {
     if (isUserTurn && size(history)) {
-      const feedback = goodMove(history, solution) ? 'success' : 'error';
+      const isGoodMove = goodMove(history, solution);
+      const feedback = isGoodMove ? 'success' : 'error';
       setFeedback(feedback);
       const lastMove = last(history)?.to;
       setLastMove(lastMove);
-      // Check if puzzle is completed
-      if (wasSolved(history, solution)) {
+      // Check if puzzle is completed - only if the move was good
+      if (isGoodMove && wasSolved(history, solution)) {
         setIsCompleted(true);
       }
     } else {
-      setFeedback(null);
+      setFeedback('start');
       setLastMove(null);
     }
   }, [history]);
