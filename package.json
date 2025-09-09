@@ -1,6 +1,6 @@
 {
   "name": "react-chess-starter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Advanced chess components integration in React and Next.js projects",
   "main": "index.js",
   "scripts": {
