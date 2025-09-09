@@ -61,7 +61,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
               onContextMenu={handleRightClick}
             >
               <span className="font-chess">{move}</span>
-              {suffix && <span className="ml-1 font-bold text-lg text-green-500">{suffix}</span>}
+              {suffix && <span className="ml-1 font-bold text-green-500">{suffix}</span>}
               {shapes && <Shape extraClass="ml-2" />}
             </div>
             {isWhiteMove && shouldShowAddOn && (
