@@ -5,10 +5,10 @@ const Move = ({ move, suffix, fen, depth, previous, isActive, onClick }) => {
   return (
     <span
       className={classnames(
-        'inline-flex items-end cursor-pointer px-0.5',
+        'inline-move inline-flex items-end cursor-pointer px-0.5 rounded',
         depth === 1 && 'font-semibold',
         depth > 1 && !isActive && 'text-tertiary/60',
-        isActive && 'text-white bg-accent rounded'
+        isActive && 'inline-move-active text-white bg-accent hover:bg-accent'
       )}
       onClick={onClick}
     >

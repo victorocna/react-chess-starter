@@ -8,3 +8,10 @@
 .next-chessground .chessground-footer {
   display: none !important;
 }
+
+.inline-move:hover {
+  @apply bg-primary;
+}
+.inline-move.inline-move-active:hover {
+  @apply bg-accent;
+}
