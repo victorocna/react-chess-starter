@@ -134,7 +134,7 @@ const usePgnViewer = (pgn, options) => {
       setCurrentMoment(newMoment);
       setFen(newMoment.fen);
     } else {
-      syncLastMove(chess);
+      syncLastMove(chess.fen());
     }
   };
 
