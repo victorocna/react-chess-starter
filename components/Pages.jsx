@@ -21,12 +21,6 @@ const Pages = () => {
       <MenuItem href="/pgn-editor" level="1">
         PGN editor
       </MenuItem>
-      <MenuItem href="/move-trainer" level="1">
-        Move trainer
-      </MenuItem>
-      <MenuItem href="/show-threat" level="1">
-        Show threat
-      </MenuItem>
     </>
   );
 };
