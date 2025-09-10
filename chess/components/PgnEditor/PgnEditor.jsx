@@ -1,9 +1,9 @@
 import { useContextActions } from '@chess/hooks';
 import { useState } from 'react';
 import { ContextMenu, PgnEditorModals } from '.';
-import { PgnTree } from '../PgnViewer';
+import { MoveModal, PgnTree } from '../PgnViewer';
 
-const PgnEditor = ({ tree, current, onMoveClick, setTree }) => {
+const PgnEditor = ({ tree, variations, variationProps, current, onMoveClick, setTree }) => {
   const { handleContextAction, commentModal, annotationModal } = useContextActions(tree, setTree);
 
   const [contextMenu, setContextMenu] = useState({
@@ -38,6 +38,14 @@ const PgnEditor = ({ tree, current, onMoveClick, setTree }) => {
         onMoveClick={onMoveClick}
         onRightClick={handleRightClick}
       />
+      {variations && (
+        <div
+          className="absolute top-0 left-0 w-full h-full bg-black/50
+          backdrop-blur-sm flex items-center justify-center z-50"
+        >
+          <MoveModal variations={variations} {...variationProps} />
+        </div>
+      )}
       <ContextMenu
         isVisible={contextMenu.isVisible}
         position={contextMenu.position}
