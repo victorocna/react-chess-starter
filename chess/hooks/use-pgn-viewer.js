@@ -49,17 +49,18 @@ const usePgnViewer = (pgn, options) => {
 
   useEffect(() => {
     if (initialMoveIndex === 0 || moments.length <= initialMoveIndex) {
-      if (!currentMoment) {
-        setCurrentMoment(firstMoment || defaultMoment);
-      }
+      const targetMoment = firstMoment || defaultMoment;
+      setCurrentMoment(targetMoment);
+      setFen(targetMoment?.fen);
     } else {
       const mainLineMoves = moments.filter((move) => move.depth === 1 && move.move);
       const targetMove = mainLineMoves[initialMoveIndex] || firstMoment || defaultMoment;
       setCurrentMoment(targetMove);
+      setFen(targetMove?.fen);
     }
     setVariations(null);
     setUserMoves(null);
-  }, [pgn, initialMoveIndex, moments]);
+  }, [initialMoveIndex, moments, firstMoment]);
 
   const goPrevMoment = () => {
     const prevMoment = getPrevMoment(moments, currentMoment);
