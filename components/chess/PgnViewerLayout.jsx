@@ -1,7 +1,6 @@
+import { MoveModal, PgnTree } from '@chess/components/PgnViewer';
 import { useEqualHeight, usePgnViewer, useShapes } from '@chess/hooks';
 import { NextChessground } from 'next-chessground';
-import MoveModal from './MoveModal';
-import PgnTree from './PgnTree';
 
 const PgnViewerLayout = ({ pgn }) => {
   const {

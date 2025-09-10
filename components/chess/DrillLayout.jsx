@@ -1,8 +1,8 @@
 import { useChessContext, useDrillContext } from '@chess/contexts';
 import { useMainline } from '@chess/hooks';
 import { useEffect } from 'react';
-import { FeedbackIcon, GameSheet } from '..';
-import DrillBoard from './DrillBoard';
+import { FeedbackIcon, GameSheet } from '@chess/components';
+import { DrillBoard } from '@chess/components/Drill';
 
 const DrillLayout = ({ pgn, onComplete, showMoves }) => {
   const { history, initialFen, initialTurn } = useChessContext();

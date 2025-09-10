@@ -1,8 +1,8 @@
+import { FeedbackIcon, GameSheet } from '@chess/components';
+import { PuzzleBoard } from '@chess/components/Puzzle';
 import { useChessContext, usePuzzleContext } from '@chess/contexts';
 import { flat } from 'chess-moments';
 import { useEffect, useMemo } from 'react';
-import { FeedbackIcon, GameSheet } from '..';
-import PuzzleBoard from './PuzzleBoard';
 
 const PuzzleLayout = ({ pgn, onComplete, showMoves }) => {
   const moves = useMemo(() => flat(pgn), [pgn]);

@@ -1,6 +1,6 @@
+import { PgnEditor } from '@chess/components/PgnEditor';
 import { useEqualHeight, usePgnViewer, useShapes } from '@chess/hooks';
 import { NextChessground } from 'next-chessground';
-import { PgnEditor } from '.';
 
 const PgnEditorLayout = ({ pgn }) => {
   const { tree, current, lastMove, goToMoment, onUserMove, setTree } = usePgnViewer(pgn);

@@ -1,8 +1,8 @@
 import { PgnFileLoader } from '@chess/components';
-import { PuzzleLayout } from '@chess/components/Puzzle';
 import { ChessProvider, PuzzleProvider } from '@chess/contexts';
 import { useLocalPgn } from '@chess/hooks';
 import { Layout } from '@components';
+import { PuzzleLayout } from '@components/chess';
 import { toaster } from '@lib';
 
 const Page = () => {

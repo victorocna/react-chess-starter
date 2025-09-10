@@ -1,8 +1,8 @@
 import { PgnFileLoader } from '@chess/components';
-import { PgnEditorLayout } from '@chess/components/PgnEditor';
 import { ChessProvider, PuzzleProvider } from '@chess/contexts';
 import { useLocalPgn } from '@chess/hooks';
 import { Layout } from '@components';
+import { PgnEditorLayout } from '@components/chess';
 
 const Page = () => {
   const { pgn, key, fen, setPgn } = useLocalPgn();
