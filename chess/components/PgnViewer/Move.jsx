@@ -4,6 +4,7 @@ import { classnames } from '@lib';
 const Move = ({ move, suffix, fen, depth, previous, isActive, onClick }) => {
   return (
     <span
+      id="pgn-move"
       className={classnames(
         'inline-move inline-flex items-end cursor-pointer px-0.5 rounded',
         depth === 1 && 'font-semibold',

@@ -9,7 +9,10 @@ const Comment = ({ comment }) => {
     .replace(/\n\n/g, '\n\n'); // Preserve double line breaks
 
   return (
-    <div className="comment text-tertiary prose prose-invert tight-p no-indent max-w-none text-wrap break-words">
+    <div
+      id="pgn-comment"
+      className="comment text-tertiary prose prose-invert tight-p no-indent max-w-none text-wrap break-words"
+    >
       <Markdown>{formattedComment}</Markdown>
     </div>
   );

@@ -29,7 +29,7 @@ const AddCommentModal = ({ hide, isOpen, moment, onAddComment }) => {
   };
 
   return (
-    <Modal show={isOpen} onHide={hide} backdrop="static" keyboard={false} centered>
+    <Modal show={isOpen} onHide={hide} backdrop="static" keyboard={false} centered={true}>
       <Modal.Header className="flex items-center w-full justify-between">
         <Modal.Title>
           <h3 className="font-heading first-letter:uppercase text-base font-semibold">
@@ -37,15 +37,15 @@ const AddCommentModal = ({ hide, isOpen, moment, onAddComment }) => {
           </h3>
         </Modal.Title>
         <Button className="-mr-2 flex h-8 w-8 items-center justify-center p-2" onClick={hide}>
-          <i className="fa-solid fa-x text-black"></i>
+          <i className="fa-solid fa-x text-tertiary"></i>
         </Button>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body id="comment-modal">
         <Textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder="Enter your comment here..."
-          className="w-full h-32 p-3 bg-white text-black rounded border border-gray-600 focus:border-accent focus:outline-none resize-none"
+          className="w-full h-32 p-3 bg-white text-tertiary rounded border border-gray-600 focus:border-accent focus:outline-none resize-none"
           disabled={isLoading}
           autoFocus
         />

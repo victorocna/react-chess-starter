@@ -5,7 +5,7 @@ const EmptyGameSheet = ({ initialFen }) => {
   const { fullmoveNumber, activeColor } = fenParts || {};
 
   return (
-    <div className="w-full grid grid-cols-12">
+    <div id="empty-game-sheet" className="w-full grid grid-cols-12">
       <div className="col-span-2 flex items-center justify-center bg-primary text-gray-500 py-1">
         <p>{fullmoveNumber}.</p>
       </div>

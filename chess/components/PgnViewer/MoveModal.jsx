@@ -74,7 +74,7 @@ const MoveModal = ({
   };
 
   return (
-    <div className="move-modal bg-secondary w-full rounded-xl overflow-y-auto">
+    <div id="move-modal" className="bg-secondary w-full rounded-xl overflow-y-auto">
       <div
         className="flex gap-2 text-white items-center justify-between
       font-semibold border-b p-2.5 border-tertiary outline-none"

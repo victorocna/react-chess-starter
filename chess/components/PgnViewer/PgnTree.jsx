@@ -148,6 +148,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   return (
     <div
       ref={containerRef}
+      id="pgn-tree"
       className="flex-1 overflow-y-auto bg-secondary text-tertiary text-sm leading-relaxed min-h-0"
     >
       <div className="h-full flex flex-col">

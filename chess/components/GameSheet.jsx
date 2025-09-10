@@ -35,7 +35,10 @@ const GameSheet = ({ history, initialFen }) => {
   };
 
   return (
-    <div className="flex flex-col bg-secondary flex-1 overflow-hidden h-full rounded">
+    <div
+      id="game-sheet"
+      className="flex flex-col bg-secondary flex-1 overflow-hidden h-full rounded"
+    >
       <div className="flex flex-col overflow-y-auto flex-1">
         {isEmpty(moves) ? (
           <EmptyGameSheet initialFen={initialFen} />

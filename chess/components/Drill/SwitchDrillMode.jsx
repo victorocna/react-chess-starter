@@ -6,7 +6,7 @@ const SwitchDrillMode = () => {
   const { mode, setMode } = useDrillContext();
 
   return (
-    <div className="flex items-center w-full gap-2">
+    <div id="switch-drill-mode" className="flex items-center w-full gap-2">
       <div className="flex flex-wrap gap-1 items-center justify-center rounded bg-primary">
         <Button
           className={classnames(

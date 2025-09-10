@@ -1,0 +1,60 @@
+.top-right {
+  @apply absolute flex justify-end items-start pointer-events-none;
+}
+.next-chessground .chessground-footer {
+  display: none !important;
+}
+
+.inline-move:hover {
+  @apply bg-primary;
+}
+.inline-move.inline-move-active:hover {
+  @apply bg-accent;
+}
+
+#move-modal {
+  max-width: 20rem;
+  max-height: 10rem;
+}
+#annotation-modal {
+  /* Overrides for the annotation modal */
+}
+#comment-modal {
+  /* Overrides for the comment modal */
+}
+#annotation-group {
+  /* Overrides for the annotation group */
+}
+#context-menu {
+  /* Overrides for the context menu */
+}
+#switch-drill-mode {
+  /* Overrides for the switch drill mode */
+}
+#pgn-comment {
+  /* Overrides for the PGN comment */
+}
+#pgn-move {
+  /* Overrides for the PGN move */
+}
+#pgn-tree {
+  /* Overrides for the PGN tree */
+}
+#pgn-shape {
+  /* Overrides for the PGN shape */
+}
+#empty-game-sheet {
+  /* Overrides for the empty game sheet */
+}
+#feedback-icon {
+  /* Overrides for the feedback icon */
+}
+#game-sheet {
+  /* Overrides for the game sheet */
+}
+#game-sheet-move {
+  /* Overrides for the game sheet move */
+}
+#load-pgn-button {
+  /* Overrides for the load PGN button */
+}

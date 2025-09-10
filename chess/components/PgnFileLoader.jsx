@@ -26,7 +26,8 @@ const PgnFileLoader = ({ onPgnLoad }) => {
     <>
       <Button
         onClick={handleFileSelect}
-        className="bg-accent hover:bg-accent-dark text-white px-2.5 py-1 lg:px-4 lg:py-2 -my-1 rounded"
+        id="load-pgn-button"
+        className="bg-accent hover:bg-accent/90 text-white px-2.5 py-1 lg:px-4 lg:py-2 -my-1 rounded"
       >
         <span className="hidden lg:inline text-sm font-medium">Load PGN</span>
         <span className="inline lg:hidden">

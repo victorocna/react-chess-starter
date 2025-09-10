@@ -45,7 +45,7 @@ const AddAnnotationModal = ({ hide, isOpen, moment, onAddAnnotation }) => {
   const hasSelection = Object.values(selectedAnnotations).some(Boolean);
 
   return (
-    <Modal show={isOpen} onHide={hide} backdrop="static" keyboard={false} centered size="lg">
+    <Modal show={isOpen} onHide={hide} backdrop="static" keyboard={false} centered={true} size="lg">
       <Modal.Header className="flex items-center w-full justify-between">
         <Modal.Title>
           <h3 className="font-heading first-letter:uppercase text-base font-semibold">
@@ -53,10 +53,10 @@ const AddAnnotationModal = ({ hide, isOpen, moment, onAddAnnotation }) => {
           </h3>
         </Modal.Title>
         <Button className="-mr-2 flex h-8 w-8 items-center justify-center p-2" onClick={hide}>
-          <i className="fa-solid fa-x text-black"></i>
+          <i className="fa-solid fa-x text-tertiary"></i>
         </Button>
       </Modal.Header>
-      <Modal.Body className="max-h-96 overflow-y-auto">
+      <Modal.Body id="annotation-modal" className="max-h-96 overflow-y-auto">
         <AnnotationGroup
           title="NAGs for moves"
           annotations={momentAnnotations.moves}

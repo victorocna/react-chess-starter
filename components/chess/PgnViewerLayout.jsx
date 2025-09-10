@@ -34,7 +34,7 @@ const PgnViewerLayout = ({ pgn }) => {
         </div>
         {variations && (
           <div
-            className="absolute top-0 left-0 w-full h-full bg-black/50
+            className="absolute top-0 left-0 w-full h-full bg-tertiary/50
           backdrop-blur-sm flex items-center justify-center z-50"
           >
             <MoveModal

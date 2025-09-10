@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 @import 'fonts.css';
-@import 'layout.css';
 @import 'menu.css';
+@import 'chess/styles.css';

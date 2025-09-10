@@ -39,12 +39,13 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
   return (
     <div
       ref={elementRef}
+      id="context-menu"
       className="fixed z-50 bg-secondary border shadow-lg min-w-48"
       style={{ visibility: isVisible ? 'visible' : 'hidden' }}
     >
       {moment && (
         <div className="px-3 py-2 bg-primary border-b">
-          <div className="text-center text-black font-semibold font-chess">
+          <div className="text-center text-tertiary font-semibold font-chess">
             {parseFen(moment.fen)?.fullmoveNumber || ''}. {moment.move}
           </div>
         </div>
