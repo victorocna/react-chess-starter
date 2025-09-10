@@ -2,21 +2,37 @@ import { Button, Textarea } from '@components';
 import { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
-const AddCommentModal = ({ hide, isOpen, moment, onAddComment }) => {
+const AddCommentModal = ({
+  hide,
+  isOpen,
+  moment,
+  onAddComment,
+  isCommentBefore = false,
+  tree = null,
+}) => {
   const [comment, setComment] = useState('');
 
   useEffect(() => {
     if (isOpen && moment) {
-      setComment(moment.comment || '');
+      if (isCommentBefore && tree) {
+        // Look for existing comment in the starting position of the main line
+        const mainLine = tree[0];
+        if (mainLine && mainLine.length > 0) {
+          const startingPosition = mainLine.find((m) => !m.move && m.comment);
+          setComment(startingPosition?.comment || '');
+        } else {
+          setComment('');
+        }
+      } else {
+        setComment(moment.comment || '');
+      }
     } else if (!isOpen) {
       setComment('');
     }
-  }, [isOpen, moment]);
+  }, [isOpen, moment, isCommentBefore, tree]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
-    if (!comment.trim()) return;
-
     setIsLoading(true);
     try {
       await onAddComment(comment.trim());
@@ -33,7 +49,7 @@ const AddCommentModal = ({ hide, isOpen, moment, onAddComment }) => {
       <Modal.Header className="flex items-center w-full justify-between">
         <Modal.Title>
           <h3 className="font-heading first-letter:uppercase text-base font-semibold">
-            Add Comment
+            {isCommentBefore ? 'Add Comment Before Move' : 'Add Comment'}
           </h3>
         </Modal.Title>
         <Button className="-mr-2 flex h-8 w-8 items-center justify-center p-2" onClick={hide}>
@@ -56,8 +72,8 @@ const AddCommentModal = ({ hide, isOpen, moment, onAddComment }) => {
           onClick={handleSubmit}
           disabled={isLoading}
         >
-          <i className="fas fa-comment mr-2"></i>
-          Add Comment
+          <i className="fas fa-save mr-2"></i>
+          Save Comment
         </Button>
       </Modal.Footer>
     </Modal>

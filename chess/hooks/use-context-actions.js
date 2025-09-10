@@ -1,6 +1,7 @@
 import {
   addAnnotation,
   addComment,
+  addCommentBefore,
   copyMainlinePgn,
   deleteFrom,
   deleteUntil,
@@ -11,6 +12,7 @@ import { useState } from 'react';
 
 const useContextActions = (tree, setTree) => {
   const [commentModal, setCommentModal] = useState({ isOpen: false, moment: null });
+  const [commentBeforeModal, setCommentBeforeModal] = useState({ isOpen: false, moment: null });
   const [annotationModal, setAnnotationModal] = useState({ isOpen: false, moment: null });
 
   const handleContextAction = (action, moment) => {
@@ -49,6 +51,11 @@ const useContextActions = (tree, setTree) => {
         break;
       }
 
+      case 'comment-before': {
+        setCommentBeforeModal({ isOpen: true, moment });
+        break;
+      }
+
       case 'annotate': {
         setAnnotationModal({ isOpen: true, moment });
         break;
@@ -60,13 +67,23 @@ const useContextActions = (tree, setTree) => {
   };
 
   const handleAddComment = (comment) => {
-    if (!commentModal.moment || !comment?.trim()) {
+    if (!commentModal.moment) {
       return;
     }
 
     const updatedTree = addComment(tree, commentModal.moment, comment);
     setTree(updatedTree);
     setCommentModal({ isOpen: false, moment: null });
+  };
+
+  const handleAddCommentBefore = (comment) => {
+    if (!commentBeforeModal.moment) {
+      return;
+    }
+
+    const updatedTree = addCommentBefore(tree, commentBeforeModal.moment, comment);
+    setTree(updatedTree);
+    setCommentBeforeModal({ isOpen: false, moment: null });
   };
 
   const handleAddAnnotation = (annotations) => {
@@ -86,6 +103,12 @@ const useContextActions = (tree, setTree) => {
       moment: commentModal.moment,
       hide: () => setCommentModal({ isOpen: false, moment: null }),
       handleSubmit: handleAddComment,
+    },
+    commentBeforeModal: {
+      isOpen: commentBeforeModal.isOpen,
+      moment: commentBeforeModal.moment,
+      hide: () => setCommentBeforeModal({ isOpen: false, moment: null }),
+      handleSubmit: handleAddCommentBefore,
     },
     annotationModal: {
       isOpen: annotationModal.isOpen,

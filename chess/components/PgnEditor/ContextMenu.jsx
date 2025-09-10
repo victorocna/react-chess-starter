@@ -4,7 +4,7 @@ import { Button } from '@components';
 import { useContextMenu, useOnClickOutside } from '@hooks';
 import { useEffect } from 'react';
 
-const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
+const ContextMenu = ({ isVisible, position, onClose, moment, onAction, tree }) => {
   const { elementRef } = useContextMenu(isVisible, position);
 
   useOnClickOutside(elementRef, () => {
@@ -32,6 +32,24 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
     onClose();
   };
 
+  // Check if this is the first move in the tree
+  const isFirstMove = () => {
+    if (!tree || !moment || tree.length === 0) return false;
+    const mainLine = tree[0];
+    if (!mainLine || mainLine.length === 0) return false;
+
+    const firstMoveInMainLine = mainLine.find((m) => m.move);
+    return firstMoveInMainLine && firstMoveInMainLine.index === moment.index;
+  };
+
+  const getFilteredMenuItems = () => {
+    if (isFirstMove()) {
+      return contextMenuItems;
+    } else {
+      return contextMenuItems.filter((item) => item.id !== 'comment-before');
+    }
+  };
+
   if (!isVisible) {
     return null;
   }
@@ -49,7 +67,7 @@ const ContextMenu = ({ isVisible, position, onClose, moment, onAction }) => {
           </div>
         </div>
       )}
-      {contextMenuItems.map((item) => (
+      {getFilteredMenuItems().map((item) => (
         <Button
           key={item.id}
           className="w-full text-left px-3 py-2 text-sm text-tertiary hover:bg-accent hover:text-white flex items-center"

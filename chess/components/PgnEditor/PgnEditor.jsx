@@ -4,7 +4,8 @@ import { ContextMenu, PgnEditorModals } from '.';
 import { PgnTree } from '../PgnViewer';
 
 const PgnEditor = ({ tree, current, onMoveClick, setTree }) => {
-  const { handleContextAction, commentModal, annotationModal } = useContextActions(tree, setTree);
+  const { handleContextAction, commentModal, commentBeforeModal, annotationModal } =
+    useContextActions(tree, setTree);
 
   const [contextMenu, setContextMenu] = useState({
     isVisible: false,
@@ -44,8 +45,14 @@ const PgnEditor = ({ tree, current, onMoveClick, setTree }) => {
         moment={contextMenu.moment}
         onAction={handleAction}
         onClose={handleCloseContextMenu}
+        tree={tree}
       />
-      <PgnEditorModals commentModal={commentModal} annotationModal={annotationModal} />
+      <PgnEditorModals
+        commentModal={commentModal}
+        commentBeforeModal={commentBeforeModal}
+        annotationModal={annotationModal}
+        tree={tree}
+      />
     </>
   );
 };

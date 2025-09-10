@@ -1,6 +1,6 @@
 import { AddAnnotationModal, AddCommentModal } from '.';
 
-const PgnEditorModals = ({ commentModal, annotationModal }) => {
+const PgnEditorModals = ({ commentModal, commentBeforeModal, annotationModal, tree }) => {
   return (
     <>
       <AddCommentModal
@@ -8,6 +8,15 @@ const PgnEditorModals = ({ commentModal, annotationModal }) => {
         hide={commentModal.hide}
         moment={commentModal.moment}
         onAddComment={commentModal.handleSubmit}
+        isCommentBefore={false}
+      />
+      <AddCommentModal
+        isOpen={commentBeforeModal.isOpen}
+        hide={commentBeforeModal.hide}
+        moment={commentBeforeModal.moment}
+        onAddComment={commentBeforeModal.handleSubmit}
+        isCommentBefore={true}
+        tree={tree}
       />
       <AddAnnotationModal
         isOpen={annotationModal.isOpen}
