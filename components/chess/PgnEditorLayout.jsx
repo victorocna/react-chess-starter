@@ -1,8 +1,9 @@
+import { PgnNavigator } from '@chess/components';
 import { PgnEditor } from '@chess/components/PgnEditor';
 import { useEqualHeight, usePgnViewer, useShapes } from '@chess/hooks';
 import { NextChessground } from 'next-chessground';
 
-const PgnEditorLayout = ({ pgn }) => {
+const PgnEditorLayout = ({ pgn, games, currentGameIndex, onGameSelect }) => {
   const {
     tree,
     setTree,
@@ -35,8 +36,9 @@ const PgnEditorLayout = ({ pgn }) => {
           />
         </div>
       </div>
-      <div className="relative overflow-hidden">
-        <div ref={targetRef} className="overflow-y-auto rounded">
+      <div ref={targetRef} className="relative overflow-hidden flex flex-col">
+        <PgnNavigator games={games} currentIndex={currentGameIndex} onGameSelect={onGameSelect} />
+        <div className="overflow-y-auto rounded">
           <PgnEditor
             tree={tree}
             variations={variations}

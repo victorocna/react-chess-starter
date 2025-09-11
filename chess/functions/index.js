@@ -19,6 +19,7 @@ export { default as isValidPgn } from './is-valid-pgn';
 export { default as normalizePgn } from './normalize-pgn';
 export { default as parseExistingAnnotations } from './parse-existing-annotations';
 export { default as parseFen } from './parse-fen';
+export { default as parsePgnHeaders } from './parse-pgn-headers';
 export { default as pgnSplit } from './pgn-split';
 export { default as replyMove } from './reply-move';
 export { default as showMoveIndex } from './show-move-index';

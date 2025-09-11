@@ -19,7 +19,7 @@ const Page = () => {
         <EloDropdown selectedElo={selectedElo} onEloChange={setSelectedElo} />
       </div>
       <ChessProvider fen={constants.initialFen}>
-        <div className="grid md:grid-cols-2 gap-6 bg-white p-6 rounded-md border">
+        <div className="grid md:grid-cols-2 gap-6 md: gap-12 bg-white p-6 rounded-md border">
           <PlayLayout botElo={selectedElo} onGameOver={handleGameOver} />
         </div>
       </ChessProvider>

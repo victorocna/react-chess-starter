@@ -6,7 +6,7 @@ import { DrillLayout } from '@components/chess';
 import { toaster } from '@lib';
 
 const Page = () => {
-  const { key, fen, pgn, setPgn } = useLocalPgn();
+  const { key, fen, pgn, setPgn, games, currentGameIndex, setGameIndex } = useLocalPgn();
   const handleComplete = () => {
     toaster.success('Drill completed successfully 🎉');
   };
@@ -15,8 +15,14 @@ const Page = () => {
     <Layout key={key} title="Chess drills" button={<PgnFileLoader onPgnLoad={setPgn} />}>
       <ChessProvider fen={fen}>
         <DrillProvider mode="arrows">
-          <div className="grid md:grid-cols-2 gap-12 bg-white p-6 rounded-md border">
-            <DrillLayout pgn={pgn} onComplete={handleComplete} />
+          <div className="grid md:grid-cols-2 gap-6 md: gap-12 bg-white p-6 rounded-md border">
+            <DrillLayout
+              pgn={pgn}
+              onComplete={handleComplete}
+              games={games}
+              currentGameIndex={currentGameIndex}
+              onGameSelect={setGameIndex}
+            />
           </div>
         </DrillProvider>
       </ChessProvider>

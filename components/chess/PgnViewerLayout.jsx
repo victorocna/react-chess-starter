@@ -1,8 +1,9 @@
+import { PgnNavigator } from '@chess/components';
 import { MoveModal, PgnTree } from '@chess/components/PgnViewer';
 import { useEqualHeight, usePgnViewer, useShapes } from '@chess/hooks';
 import { NextChessground } from 'next-chessground';
 
-const PgnViewerLayout = ({ pgn }) => {
+const PgnViewerLayout = ({ pgn, games, currentGameIndex, onGameSelect }) => {
   const {
     tree, //
     current,
@@ -28,8 +29,9 @@ const PgnViewerLayout = ({ pgn }) => {
           />
         </div>
       </div>
-      <div className="relative overflow-hidden">
-        <div ref={targetRef} className="overflow-y-auto rounded">
+      <div ref={targetRef} className="relative overflow-hidden flex flex-col">
+        <PgnNavigator games={games} currentIndex={currentGameIndex} onGameSelect={onGameSelect} />
+        <div className="overflow-y-auto rounded">
           <PgnTree tree={tree} current={current} onMoveClick={goToMoment} />
         </div>
         {variations && (
