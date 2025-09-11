@@ -67,7 +67,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
               {suffix && <span className="ml-1 font-bold text-green-500">{suffix}</span>}
               {shapes && <Shape extraClass="ml-2" />}
             </div>
-            {isWhiteMove && shouldShowAddOn && moment.fen !== lastMoment.fen && (
+            {isWhiteMove && shouldShowAddOn && moment.fen !== lastMoment?.fen && (
               <div className="col-span-5 flex items-center px-3 py-1 bg-secondary">
                 <p>...</p>
               </div>
