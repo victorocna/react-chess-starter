@@ -72,4 +72,10 @@ Every move inside the PGN editor has a context menu which is revealed on right c
 
 ### Play against bots
 
-TODO
+Play against computer opponents with adjustable difficulty levels. The feature integrates with the Stockfish chess engine to provide realistic gameplay experience.
+
+Key features:
+- 9 difficulty levels ranging from Beginner (800 ELO) to World Class (2400+ ELO)
+- Real-time Stockfish engine integration with configurable skill levels
+- Automatic game over detection (checkmate, stalemate, draw)
+- Move history tracking and PGN notation display
