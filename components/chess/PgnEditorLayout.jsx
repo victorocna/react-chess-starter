@@ -37,9 +37,7 @@ const PgnEditorLayout = ({ pgn, games, currentGameIndex, onGameSelect }) => {
         </div>
       </div>
       <div ref={targetRef} className="relative overflow-hidden flex flex-col">
-        {games.length > 1 && (
-          <PgnNavigator games={games} currentIndex={currentGameIndex} onGameSelect={onGameSelect} />
-        )}
+        <PgnNavigator games={games} currentIndex={currentGameIndex} onGameSelect={onGameSelect} />
         <div className="overflow-y-auto rounded">
           <PgnEditor
             tree={tree}

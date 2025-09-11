@@ -21,9 +21,7 @@ const DrillLayout = ({ pgn, onComplete, games, currentGameIndex, onGameSelect })
         <SwitchDrillMode />
       </div>
       <div className="flex flex-col">
-        {games.length > 1 && (
-          <PgnNavigator games={games} currentIndex={currentGameIndex} onGameSelect={onGameSelect} />
-        )}
+        <PgnNavigator games={games} currentIndex={currentGameIndex} onGameSelect={onGameSelect} />
         <GameSheet history={history} initialFen={initialFen} />
       </div>
     </>

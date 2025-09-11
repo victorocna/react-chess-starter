@@ -1,8 +1,9 @@
 import { parsePgnHeaders } from '@chess/functions';
 import { Button } from '@components';
+import { isEmpty } from 'lodash';
 
 const PgnNavigator = ({ games, currentIndex, onGameSelect }) => {
-  if (!games || games.length <= 1) return null;
+  if (isEmpty(games)) return null;
 
   const isFirst = currentIndex === 0;
   const isLast = currentIndex === games.length - 1;
@@ -11,7 +12,7 @@ const PgnNavigator = ({ games, currentIndex, onGameSelect }) => {
   const headers = parsePgnHeaders(games[currentIndex]);
 
   return (
-    <div className="flex flex-col items-center gap-2 py-3">
+    <div className="flex flex-col items-center gap-2 mb-2">
       <div className="text-center">
         <div className="text-sm font-medium text-gray-700">
           {headers.StudyName || 'Untitled Study'}
