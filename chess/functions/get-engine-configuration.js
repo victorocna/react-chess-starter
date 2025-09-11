@@ -1,13 +1,13 @@
-import { PLAY_ENGINE_CONFIGS } from "@chess/constants/engine-configs";
+import { playEngineConfigs } from '@chess/constants/engine-configs';
 
 const getEngineConfiguration = (elo) => {
   const eloNum = parseInt(elo);
-  const [, skillLevel, maxError, probability] = PLAY_ENGINE_CONFIGS.find(([maxElo]) => eloNum <= maxElo);
+  const config = playEngineConfigs.find(([maxElo]) => eloNum <= maxElo);
 
   return {
-    skillLevel,
-    maxError,
-    probability,
+    skillLevel: config[1],
+    maxError: config[2],
+    probability: config[3],
   };
 };
 

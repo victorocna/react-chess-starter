@@ -1,8 +1,8 @@
-import { NoSsr } from '@components';
 import { useChessContext } from '@chess/contexts';
+import { engineMove } from '@chess/functions';
+import { isFunction } from 'lodash';
 import { NextChessground } from 'next-chessground';
 import { useRef } from 'react';
-import { engineMove } from '@chess/functions';
 
 const ChessBoard = ({ fen, orientation, engine, onGameOver }) => {
   const ref = useRef();
@@ -14,10 +14,10 @@ const ChessBoard = ({ fen, orientation, engine, onGameOver }) => {
 
     await engine.set_position(fen);
     const thinkTime = 1000; // 1 second think time
-    const move = engineMove(await engine.go_time(thinkTime));
+    const nextMove = engineMove(await engine.go_time(thinkTime));
 
-    if (ref.current) {
-      ref.current.board.move(move.from, move.to);
+    if (nextMove && isFunction(ref?.current?.board?.move)) {
+      ref.current.board.move(nextMove.from, nextMove.to);
     }
   };
 
@@ -34,11 +34,7 @@ const ChessBoard = ({ fen, orientation, engine, onGameOver }) => {
     }
   };
 
-  return (
-    <NoSsr>
-      <NextChessground ref={ref} fen={fen} orientation={orientation} onMove={handleMove} />
-    </NoSsr>
-  );
+  return <NextChessground ref={ref} fen={fen} orientation={orientation} onMove={handleMove} />;
 };
 
 export default ChessBoard;

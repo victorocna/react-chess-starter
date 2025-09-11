@@ -1,7 +1,7 @@
 // Engine configurations for different play modes
 // Format: [maxElo, skillLevel, maxError, probability]
 
-export const PLAY_ENGINE_CONFIGS = [
+export const playEngineConfigs = [
   [800, 1, 4000, 50], // Beginner - very weak
   [1000, 3, 3500, 100], // Novice
   [1200, 5, 3000, 200], // Intermediate

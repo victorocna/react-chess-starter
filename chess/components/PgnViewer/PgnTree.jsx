@@ -2,7 +2,7 @@ import { getMoveNumber, isMoveActive } from '@chess/functions';
 import { classnames } from '@lib';
 import { isFunction, last, omit } from 'lodash';
 import { Fragment, useEffect, useMemo, useRef } from 'react';
-import { Comment, Move, Shape } from '../PgnViewer';
+import { Comment, Move, Shape } from '.';
 
 const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   const containerRef = useRef();

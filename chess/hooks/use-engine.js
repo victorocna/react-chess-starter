@@ -1,4 +1,4 @@
-import { Stockfish } from '@lib/stockfish-wrapper';
+import { Stockfish } from '@chess/stockfish/stockfish-wrapper';
 import { useEffect, useState } from 'react';
 
 const useEngine = () => {

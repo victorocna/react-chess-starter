@@ -1,8 +1,9 @@
+import { useChessContext } from '@chess/contexts';
 import { getEngineConfiguration } from '@chess/functions';
 import { useEngine } from '@chess/hooks';
-import { useChessContext } from '@chess/contexts';
-import { useEffect } from 'react';
 import { coffee } from '@functions';
+import { isFunction } from 'lodash';
+import { useEffect } from 'react';
 import { ChessBoard } from '.';
 
 const GameBoard = ({ botElo, onGameOver }) => {
@@ -28,7 +29,7 @@ const GameBoard = ({ botElo, onGameOver }) => {
     }
 
     await coffee(500);
-    if (onGameOver) {
+    if (isFunction(onGameOver)) {
       onGameOver(winner);
     }
   };
