@@ -34,7 +34,7 @@ This package has the core chess board logic
 - drills
 - PGN viewer
 - PGN editor
-- play against bots
+- play computer
 
 ### Chess context
 
@@ -57,7 +57,15 @@ The mainline is extracted from PGN input data. Any other sideline is ignored.
 
 ### PGN viewer
 
-TODO
+Complete PGN viewer similar to Chessbase.com and Lichess.org.
+
+Key features:
+
+- Show mainline as grid moves
+- Show sidelines inline inside the grid
+- Show shapes, comments and annotations for every move
+- Show variations modal
+- Show user moves and update PGN tree
 
 ### PGN editor
 
@@ -70,12 +78,14 @@ Every move inside the PGN editor has a context menu which is revealed on right c
 - Promote variation
 - Copy mainline PGN
 
-### Play against bots
+### Play computer
 
-Play against computer opponents with adjustable difficulty levels. The feature integrates with the Stockfish chess engine to provide realistic gameplay experience.
+Play against computer opponents with adjustable difficulty levels. The feature integrates with
+the Stockfish chess engine to provide realistic gameplay experience.
 
 Key features:
-- 9 difficulty levels ranging from Beginner (800 ELO) to World Class (2400+ ELO)
+
+- Difficulty levels from Beginner (800 ELO) to World Class (2400+ ELO)
 - Real-time Stockfish engine integration with configurable skill levels
 - Automatic game over detection (checkmate, stalemate, draw)
 - Move history tracking and PGN notation display
