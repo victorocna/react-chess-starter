@@ -1,17 +1,26 @@
-import { PgnFileLoader } from '@chess/components';
-import { useLocalPgn } from '@chess/hooks';
-import { Layout } from '@components';
-import NextChessground from 'next-chessground';
+import { ChessProvider } from '@chess/contexts';
+import { EloDropdown, Layout } from '@components';
+import { PlayLayout } from '@components/chess';
+import { toaster } from '@lib';
+import { useState } from 'react';
 
 const Page = () => {
-  const { key, fen, setPgn } = useLocalPgn();
+  const [selectedElo, setSelectedElo] = useState(1200);
+
+  const handleGameOver = (winner) => {
+    toaster.success(`Game Over - ${winner} wins! 🎉`);
+  };
 
   return (
-    <Layout key={key} title="Play computer" button={<PgnFileLoader onPgnLoad={setPgn} />}>
-      <div className="grid md:grid-cols-2 gap-12 bg-white p-6 rounded-md border">
-        <NextChessground fen={fen} />
-        <h2 className="text-lg font-semibold">Coming soon</h2>
-      </div>
+    <Layout
+      title="Play computer"
+      button={<EloDropdown selectedElo={selectedElo} onEloChange={setSelectedElo} />}
+    >
+      <ChessProvider fen="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1">
+        <div className="grid md:grid-cols-2 gap-6 bg-white p-6 rounded-md border">
+          <PlayLayout botElo={selectedElo} onGameOver={handleGameOver} showMoves={true} />
+        </div>
+      </ChessProvider>
     </Layout>
   );
 };
