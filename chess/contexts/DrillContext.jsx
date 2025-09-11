@@ -15,8 +15,13 @@ export const DrillProvider = ({ children, mode: initialMode }) => {
   const [lastMove, setLastMove] = useState(null);
   const [viewOnly, setViewOnly] = useState(false);
 
-  // Mode: arrows, squares, nohint, retry
+  // Mode: arrows, squares, nohint, retry, text
   const [mode, setMode] = useState(initialMode || '');
+
+  // Set viewOnly when mode is 'text' (Learn Mode)
+  useEffect(() => {
+    setViewOnly(mode === 'text');
+  }, [mode]);
 
   // Update feedback and lastMove when history changes
   useEffect(() => {
