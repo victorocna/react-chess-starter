@@ -2,7 +2,7 @@ import { GameBoard } from '@chess/components/Play';
 import { GameSheet } from '@chess/components';
 import { useChessContext } from '@chess/contexts';
 
-const PlayLayout = ({ botElo, onGameOver, showMoves = true }) => {
+const PlayLayout = ({ botElo, onGameOver }) => {
   const { history, initialFen } = useChessContext();
 
   return (
@@ -10,7 +10,7 @@ const PlayLayout = ({ botElo, onGameOver, showMoves = true }) => {
       <div className="flex flex-col gap-4">
         <GameBoard botElo={botElo} onGameOver={onGameOver} />
       </div>
-      {showMoves && <GameSheet history={history} initialFen={initialFen} />}
+      <GameSheet history={history} initialFen={initialFen} />
     </>
   );
 };

@@ -16,7 +16,7 @@ const Page = () => {
       <ChessProvider fen={fen}>
         <PuzzleProvider>
           <div className="grid md:grid-cols-2 gap-12 bg-white p-6 rounded-md border">
-            <PuzzleLayout pgn={pgn} onComplete={handleComplete} showMoves={true} />
+            <PuzzleLayout pgn={pgn} onComplete={handleComplete} />
           </div>
         </PuzzleProvider>
       </ChessProvider>

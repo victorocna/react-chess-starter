@@ -20,7 +20,7 @@ const Page = () => {
       </div>
       <ChessProvider fen={constants.initialFen}>
         <div className="grid md:grid-cols-2 gap-6 bg-white p-6 rounded-md border">
-          <PlayLayout botElo={selectedElo} onGameOver={handleGameOver} showMoves={true} />
+          <PlayLayout botElo={selectedElo} onGameOver={handleGameOver} />
         </div>
       </ChessProvider>
     </Layout>
