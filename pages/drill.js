@@ -16,7 +16,7 @@ const Page = () => {
       <ChessProvider fen={fen}>
         <DrillProvider mode="arrows">
           <div className="grid md:grid-cols-2 gap-12 bg-white p-6 rounded-md border">
-            <DrillLayout pgn={pgn} onComplete={handleComplete} showMoves={true} />
+            <DrillLayout pgn={pgn} onComplete={handleComplete} />
           </div>
         </DrillProvider>
       </ChessProvider>
