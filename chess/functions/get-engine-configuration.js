@@ -1,4 +1,4 @@
-import { PLAY_ENGINE_CONFIGS } from '@chess/constants';
+import { PLAY_ENGINE_CONFIGS } from "@chess/constants/engine-configs";
 
 const getEngineConfiguration = (elo) => {
   const eloNum = parseInt(elo);
