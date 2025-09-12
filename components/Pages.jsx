@@ -22,7 +22,7 @@ const Pages = () => {
         Play computer
       </MenuItem>
       <MenuItem href="/show-threat" level="1">
-        Threats
+        Show threats
       </MenuItem>
     </>
   );
