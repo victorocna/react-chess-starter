@@ -1,20 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useEngine } from '.';
+import { normalizeThreatMessage, reverseFenColor } from '@chess/functions';
 import { useDisclosure } from '@hooks';
-
-const reverseFenColor = (fen) => {
-  return fen?.includes(' w ') ? fen.replace(' w ', ' b ') : fen.replace(' b ', ' w ');
-};
-
-const normalizeThreatMessage = (threatMessage) => {
-  const fromTo = threatMessage?.split(' ')?.[1];
-  if (!fromTo) return;
-
-  const shapeOrigin = fromTo.slice(0, 2);
-  const shapeDestination = fromTo.slice(2, 4);
-
-  return { orig: shapeOrigin, dest: shapeDestination, brush: 'red' };
-};
+import { useEffect, useState } from 'react';
+import { useEngine } from '.';
 
 const useThreat = (initialFen) => {
   const { isOpen: isActive, show, hide, toggle } = useDisclosure();
