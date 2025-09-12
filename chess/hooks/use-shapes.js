@@ -2,7 +2,7 @@ import { compact } from 'lodash';
 import { useState } from 'react';
 import useVariationArrows from './use-variation-arrows';
 
-const useShapes = ({ userMoves, current, variations }) => {
+const useShapes = ({ userMoves, current, variations, threatShape }) => {
   const [selectedVariationIndex, setSelectedVariationIndex] = useState(0);
 
   const variationArrow = useVariationArrows(current, variations, selectedVariationIndex);
@@ -12,9 +12,8 @@ const useShapes = ({ userMoves, current, variations }) => {
   if (!userMoves && current.shapes) {
     shapesArray.push(...current.shapes);
   }
-
   // Add the variation arrow to the shapes array
-  const shapes = compact([...shapesArray, variationArrow]);
+  const shapes = compact([...shapesArray, variationArrow, threatShape]);
 
   return { shapes, refocusModal: setSelectedVariationIndex };
 };

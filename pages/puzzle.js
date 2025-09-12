@@ -15,7 +15,7 @@ const Page = () => {
     <Layout key={key} title="Chess puzzles" button={<PgnFileLoader onPgnLoad={setPgn} />}>
       <ChessProvider fen={fen}>
         <PuzzleProvider>
-          <div className="grid md:grid-cols-2 gap-6 md: gap-12 bg-white p-6 rounded-md border">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-12 bg-white p-6 rounded-md border">
             <PuzzleLayout
               pgn={pgn}
               onComplete={handleComplete}
