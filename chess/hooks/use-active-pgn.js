@@ -8,17 +8,17 @@ const useActivePgn = (data, index) => {
   // Computed PGN from diagrams
   const pgn = useMemo(() => {
     return data?.diagrams[index]?.pgn;
-  }, [data]);
+  }, [data, index]);
 
   // Computed FEN from PGN
   const fen = useMemo(() => {
     return extractFen(pgn);
   }, [pgn]);
 
-  // Trigger rerender whenever PGN changes
+  // Trigger rerender whenever PGN or index changes
   useEffect(() => {
     rerender();
-  }, [pgn]);
+  }, [pgn, index]);
 
   return {
     key,
