@@ -7,6 +7,8 @@ export { default as deleteFrom } from './delete-from';
 export { default as deleteUntil } from './delete-until';
 export { default as engineMove } from './engine-move';
 export { default as extractFen } from './extract-fen';
+export { default as formatEngineScore } from './format-engine-score';
+export { default as formatPvMoves } from './format-pv-moves';
 export { default as getEngineConfiguration } from './get-engine-configuration';
 export { default as getMoveArrow } from './get-move-arrow';
 export { default as getMoveNumber } from './get-move-number';
