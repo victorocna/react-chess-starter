@@ -12,13 +12,13 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   const lastMoment = useMemo(() => last(last(tree)), [tree]);
 
   useEffect(() => {
-    if (containerRef.current && current.index) {
-      const childEl = momentsDictionaryRef.current[current.index];
+    if (containerRef.current && current?.index) {
+      const childEl = momentsDictionaryRef.current[current?.index];
       if (childEl) {
         childEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-  }, [current.index]);
+  }, [current?.index]);
 
   const showMomentAsGrid = (moment, inBlockIndex, block) => {
     const { move, fen, index, shapes, comment, suffix } = moment;
