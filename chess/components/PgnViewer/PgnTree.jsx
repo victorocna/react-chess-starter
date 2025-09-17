@@ -135,7 +135,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
         ) : (
           <div
             key={index}
-            className="flex flex-wrap items-start gap-1 py-1"
+            className="flex flex-wrap items-center gap-1 py-1"
             style={{ marginLeft: spacing }}
           >
             {block.map(showMomentAsBlock)}
