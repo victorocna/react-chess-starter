@@ -14,9 +14,14 @@ const addAnnotation = (tree, moment, annotations) => {
 
   return tree.map((branch) => {
     return branch.map((m) => {
-      // Update only the targeted moment
-      if (m.index === moment.index && suffix) {
-        m.suffix = suffix;
+      // Update the targeted moment (FIXED: removed "&& suffix" condition)
+      if (m.index === moment.index) {
+        if (suffix) {
+          m.suffix = suffix;
+        } else {
+          // Remove suffix when no annotations
+          delete m.suffix;
+        }
       }
       return m;
     });
