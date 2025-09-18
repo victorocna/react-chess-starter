@@ -31,6 +31,7 @@ export const ChessProvider = ({ children, fen }) => {
     currentFen,
     isUserTurn,
     history,
+    setHistory,
     saveHistory,
   };
 

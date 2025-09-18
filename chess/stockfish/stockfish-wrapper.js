@@ -7314,6 +7314,16 @@ class Stockfish {
       };
     });
   }
+  shouldMoveFirst(fen, playerColor) {
+    const turnFromFen = fen.split(' ')[1]; // 'w' or 'b'
+    const isWhiteToMove = turnFromFen === 'w';
+
+    // Engine should move first if:
+    // - Player chose black pieces and it's white's turn to move
+    // - Player chose white pieces and it's black's turn to move
+    return (playerColor === 'black' && isWhiteToMove) ||
+           (playerColor === 'white' && !isWhiteToMove);
+  }
   quit() {
     window.chessEngineWorker.postMessage('quit');
   }

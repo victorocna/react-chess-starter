@@ -1,8 +1,6 @@
-import { playEngineConfigs } from '@chess/constants/engine-configs';
-
-const getEngineConfiguration = (elo) => {
+const getEngineConfiguration = (elo, configs) => {
   const eloNum = parseInt(elo);
-  const config = playEngineConfigs.find(([maxElo]) => eloNum <= maxElo);
+  const config = configs.find(([maxElo]) => eloNum <= maxElo);
 
   return {
     skillLevel: config[1],
