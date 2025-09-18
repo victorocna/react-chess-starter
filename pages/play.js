@@ -9,8 +9,11 @@ import { useState } from 'react';
 const Page = () => {
   const [selectedElo, setSelectedElo] = useState(1200);
 
-  const handleGameOver = (winner) => {
-    toaster.success(`Game Over - ${winner} wins! 🎉`);
+  const handleGameOver = (chess) => {
+    if (chess.isCheckmate()) {
+      const winner = chess.turn() === 'w' ? 'Black' : 'White';
+      toaster.success(`Game Over! ${winner} wins! 🎉`);
+    }
   };
 
   return (
@@ -20,7 +23,7 @@ const Page = () => {
       </div>
       <ChessProvider fen={constants.initialFen}>
         <div className="grid md:grid-cols-2 gap-6 md:gap-12 bg-white p-6 rounded-md border">
-          <PlayLayout botElo={selectedElo} onGameOver={handleGameOver} />
+          <PlayLayout handleGameOver={handleGameOver} elo={selectedElo} />
         </div>
       </ChessProvider>
     </Layout>

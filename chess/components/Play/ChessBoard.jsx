@@ -2,18 +2,22 @@ import { useChessContext } from '@chess/contexts';
 import { engineMove } from '@chess/functions';
 import { isFunction } from 'lodash';
 import { NextChessground } from 'next-chessground';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-const ChessBoard = ({ fen, orientation, engine, onGameOver }) => {
+const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerColor }) => {
   const ref = useRef();
   const { saveHistory } = useChessContext();
+
+  // Set custom starting position if specified
+  useEffect(() => {
+    engine.set_position(fen);
+  }, [engine, fen]);
 
   // Make the engine move on the chess board
   const makeEngineMove = async (fen) => {
     if (!engine || !ref.current) return;
 
     await engine.set_position(fen);
-    const thinkTime = 1000; // 1 second think time
     const nextMove = engineMove(await engine.go_time(thinkTime));
 
     if (nextMove && isFunction(ref?.current?.board?.move)) {
@@ -33,6 +37,14 @@ const ChessBoard = ({ fen, orientation, engine, onGameOver }) => {
       return engine.quit();
     }
   };
+
+  // Handle initial engine move if engine should start first
+  useEffect(() => {
+    if (engine.shouldMoveFirst(fen, playerColor)) {
+      engine.toggleTurn();
+      makeEngineMove(fen);
+    }
+  }, [engine, fen, playerColor]);
 
   return <NextChessground ref={ref} fen={fen} orientation={orientation} onMove={handleMove} />;
 };
