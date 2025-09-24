@@ -1,2 +1,4 @@
 export { default as ChessBoard } from './ChessBoard';
 export { default as GameBoard } from './GameBoard';
+export { default as PlayerCard } from './PlayerCard';
+export { default as Timer } from './Timer';
