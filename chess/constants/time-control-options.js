@@ -1,0 +1,17 @@
+export const timeControlOptions = [
+  { value: 'unlimited', label: 'Unlimited', minutes: 0, increment: 0 },
+  { value: '1|0', label: '1 minute', minutes: 1, increment: 0 },
+  { value: '1|1', label: '1 | 1', minutes: 1, increment: 1 },
+  { value: '2|0', label: '2 minutes', minutes: 2, increment: 0 },
+  { value: '2|1', label: '2 | 1', minutes: 2, increment: 1 },
+  { value: '3|0', label: '3 minutes', minutes: 3, increment: 0 },
+  { value: '3|2', label: '3 | 2', minutes: 3, increment: 2 },
+  { value: '5|0', label: '5 minutes', minutes: 5, increment: 0 },
+  { value: '5|5', label: '5 | 5', minutes: 5, increment: 5 },
+  { value: '10|0', label: '10 minutes', minutes: 10, increment: 0 },
+  { value: '10|5', label: '10 | 5', minutes: 10, increment: 5 },
+  { value: '15|0', label: '15 minutes', minutes: 15, increment: 0 },
+  { value: '15|10', label: '15 | 10', minutes: 15, increment: 10 },
+  { value: '30|0', label: '30 minutes', minutes: 30, increment: 0 },
+  { value: '60|0', label: '60 minutes', minutes: 60, increment: 0 },
+];
