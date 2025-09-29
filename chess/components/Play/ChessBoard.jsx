@@ -1,5 +1,6 @@
 import { useChessContext } from '@chess/contexts';
 import { engineMove } from '@chess/functions';
+import { coffee } from '@functions';
 import { isFunction } from 'lodash';
 import { NextChessground } from 'next-chessground';
 import { useEffect, useRef } from 'react';
@@ -32,6 +33,12 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
     if (engine.turn) {
       await makeEngineMove(chess.fen());
     }
+    // Execute premove if available
+    if (ref.current && ref.current.playPremove) {
+      await coffee(100);
+      await ref.current.playPremove();
+    }
+
     if (chess.isGameOver()) {
       await onGameOver(chess);
       return engine.quit();
@@ -46,7 +53,15 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
     }
   }, [engine, fen, playerColor]);
 
-  return <NextChessground ref={ref} fen={fen} orientation={orientation} onMove={handleMove} />;
+  return (
+    <NextChessground
+      premoves={true}
+      ref={ref}
+      fen={fen}
+      orientation={orientation}
+      onMove={handleMove}
+    />
+  );
 };
 
 export default ChessBoard;
