@@ -7,6 +7,7 @@ import { useEffect, useRef } from 'react';
 
 const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerColor }) => {
   const ref = useRef();
+  const isEngineMoving = useRef(false);
   const { saveHistory } = useChessContext();
 
   // Set custom starting position if specified
@@ -16,32 +17,49 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
 
   // Make the engine move on the chess board
   const makeEngineMove = async (fen) => {
-    if (!engine || !ref.current) return;
+    if (!engine || !ref.current) return null;
 
     await engine.set_position(fen);
     const nextMove = engineMove(await engine.go_time(thinkTime));
 
     if (nextMove && isFunction(ref?.current?.board?.move)) {
-      ref.current.board.move(nextMove.from, nextMove.to);
+      isEngineMoving.current = true;
+      const engineChess = ref.current.board.move(nextMove.from, nextMove.to);
+      isEngineMoving.current = false;
+      return engineChess;
     }
+
+    return null;
   };
 
   // Handles both user moves and engine moves
   const handleMove = async (chess) => {
+    if (isEngineMoving.current) {
+      return;
+    }
+
     engine.toggleTurn();
     saveHistory(chess);
-    if (engine.turn) {
-      await makeEngineMove(chess.fen());
-    }
-    // Execute premove if available
-    if (ref.current && ref.current.playPremove) {
-      await coffee(100);
-      await ref.current.playPremove();
-    }
 
     if (chess.isGameOver()) {
       await onGameOver(chess);
       return engine.quit();
+    }
+
+    if (engine.turn) {
+      const engineChess = await makeEngineMove(chess.fen());
+
+      if (engineChess && engineChess.isGameOver()) {
+        saveHistory(engineChess);
+        await onGameOver(engineChess);
+        return engine.quit();
+      }
+    }
+
+    // Execute premove if available
+    if (ref.current && ref.current.playPremove) {
+      await coffee(100);
+      await ref.current.playPremove();
     }
   };
 
