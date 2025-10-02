@@ -1,18 +1,11 @@
-import { extractFen } from '@chess/functions';
-import pgnSplit from '@chess/functions/pgn-split';
+import { emptyPgn } from '@chess/constants/empty-pgn';
+import { extractFen, pgnSplit } from '@chess/functions';
 import { useRerender } from '@hooks';
 import { useMemo, useState } from 'react';
 import { local } from 'store2';
 
 const useLocalPgn = () => {
-  const defaultPgn = [
-    '[FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"]',
-    '[SetUp "1"]',
-    '',
-    '*',
-  ].join('\n');
-
-  const [rawPgn, setRawPgn] = useState(() => local.get('pgn') || defaultPgn);
+  const [rawPgn, setRawPgn] = useState(() => local.get('pgn') || emptyPgn);
   const [currentGameIndex, setCurrentGameIndex] = useState(0);
   const [key, rerender] = useRerender();
 
@@ -21,7 +14,7 @@ const useLocalPgn = () => {
     return parsedGames.length > 0 ? parsedGames : [rawPgn];
   }, [rawPgn]);
 
-  const pgn = games[currentGameIndex] || games[0] || defaultPgn;
+  const pgn = games[currentGameIndex] || games[0] || emptyPgn;
   const fen = extractFen(pgn);
 
   const setPgn = (newPgn) => {

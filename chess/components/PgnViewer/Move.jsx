@@ -1,7 +1,7 @@
-import { getMoveSuffix, showMoveIndex } from '@chess/functions';
+import { getMoveSuffix, nagToSymbol, showMoveIndex } from '@chess/functions';
 import { classnames } from '@lib';
 
-const Move = ({ move, suffix, fen, depth, previous, isActive, onClick }) => {
+const Move = ({ move, suffix, glyph, fen, depth, previous, isActive, onClick }) => {
   return (
     <span
       id="pgn-move"
@@ -16,6 +16,7 @@ const Move = ({ move, suffix, fen, depth, previous, isActive, onClick }) => {
       {showMoveIndex(previous, fen, depth) && <span className="mr-1">{getMoveSuffix(fen)}</span>}
       <span className="font-chess">{move}</span>
       {suffix && <span className="ml-1 font-bold text-green-500">{suffix}</span>}
+      {glyph && <span className="ml-1 font-bold text-green-500">{nagToSymbol(glyph)}</span>}
     </span>
   );
 };

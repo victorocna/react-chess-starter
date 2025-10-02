@@ -15,8 +15,7 @@ const AddAnnotationModal = ({ hide, isOpen, moment, onAddAnnotation }) => {
 
   useEffect(() => {
     if (isOpen && moment) {
-      const existingSuffix = moment.suffix || '';
-      const selected = parseExistingAnnotations(existingSuffix, momentAnnotations);
+      const selected = parseExistingAnnotations(moment, momentAnnotations);
       setSelectedAnnotations(selected);
     } else if (!isOpen) {
       setSelectedAnnotations({ moves: null, evaluation: null, symbols: null });
@@ -24,10 +23,17 @@ const AddAnnotationModal = ({ hide, isOpen, moment, onAddAnnotation }) => {
   }, [isOpen, moment]);
 
   const handleAnnotationSelect = (category, annotation) => {
-    setSelectedAnnotations((prev) => ({
-      ...prev,
-      [category]: prev[category]?.suffix === annotation?.suffix ? null : annotation,
-    }));
+    setSelectedAnnotations((prev) => {
+      const currentAnnotation = prev[category];
+      const isSame =
+        (currentAnnotation?.suffix && currentAnnotation.suffix === annotation?.suffix) ||
+        (currentAnnotation?.nag && currentAnnotation.nag === annotation?.nag);
+
+      return {
+        ...prev,
+        [category]: isSame ? null : annotation,
+      };
+    });
   };
 
   const handleSubmit = async () => {

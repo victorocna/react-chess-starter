@@ -1,4 +1,4 @@
-import { getMoveNumber, isMoveActive } from '@chess/functions';
+import { getMoveNumber, isMoveActive, nagToSymbol } from '@chess/functions';
 import { classnames } from '@lib';
 import { isFunction, last, omit } from 'lodash';
 import { Fragment, useEffect, useMemo, useRef } from 'react';
@@ -21,7 +21,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   }, [current?.index]);
 
   const showMomentAsGrid = (moment, inBlockIndex, block) => {
-    const { move, fen, index, shapes, comment, suffix } = moment;
+    const { move, fen, index, shapes, comment, suffix, glyph } = moment;
     let { previous } = moment;
     if (!previous) {
       previous = block[inBlockIndex - 1];
@@ -65,6 +65,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
             >
               <span className="font-chess">{move}</span>
               {suffix && <span className="ml-1 font-bold text-green-500">{suffix}</span>}
+              {glyph && <span className="ml-1 font-bold text-green-500">{nagToSymbol(glyph)}</span>}
               {shapes && <Shape extraClass="ml-2" />}
             </div>
             {isWhiteMove && shouldShowAddOn && moment.fen !== lastMoment?.fen && (
@@ -84,7 +85,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   };
 
   const showMomentAsBlock = (moment, inBlockIndex, block) => {
-    const { comment, move, fen, shapes, index, suffix } = moment;
+    const { comment, move, fen, shapes, index, suffix, glyph } = moment;
     let { previous } = moment;
     if (!previous) {
       previous = block[inBlockIndex - 1];
@@ -107,7 +108,13 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
             onClick={() => onMoveClick(moment)}
             onContextMenu={handleRightClick}
           >
-            <Move isActive={isActive} previous={previous} suffix={suffix} {...moment} />
+            <Move
+              isActive={isActive}
+              previous={previous}
+              suffix={suffix}
+              glyph={glyph}
+              {...moment}
+            />
           </div>
         )}
         {shapes && <Shape />}
