@@ -18,7 +18,7 @@ export const momentAnnotations = {
     { symbol: '±', nag: '$16', label: 'White is better' },
     { symbol: '∓', nag: '$17', label: 'Black is better' },
     { symbol: '+−', nag: '$18', label: 'White is winning' },
-    { symbol: '-+', nag: '$19', label: 'Black is winning' },
+    { symbol: '−+', nag: '$19', label: 'Black is winning' },
   ],
 
   symbols: [

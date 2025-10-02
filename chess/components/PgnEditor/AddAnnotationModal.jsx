@@ -29,10 +29,18 @@ const AddAnnotationModal = ({ hide, isOpen, moment, onAddAnnotation }) => {
         (currentAnnotation?.suffix && currentAnnotation.suffix === annotation?.suffix) ||
         (currentAnnotation?.nag && currentAnnotation.nag === annotation?.nag);
 
-      return {
+      const newAnnotations = {
         ...prev,
         [category]: isSame ? null : annotation,
       };
+
+      if (category === 'evaluation' && !isSame) {
+        newAnnotations.symbols = null;
+      } else if (category === 'symbols' && !isSame) {
+        newAnnotations.evaluation = null;
+      }
+
+      return newAnnotations;
     });
   };
 

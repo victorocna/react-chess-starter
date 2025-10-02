@@ -1,4 +1,5 @@
 import { getMoveNumber, isMoveActive, nagToSymbol } from '@chess/functions';
+import { momentAnnotations } from '@chess/constants/moment-annotations';
 import { classnames } from '@lib';
 import { isFunction, last, omit } from 'lodash';
 import { Fragment, useEffect, useMemo, useRef } from 'react';
@@ -65,7 +66,14 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
             >
               <span className="font-chess">{move}</span>
               {suffix && <span className="ml-1 font-bold text-green-500">{suffix}</span>}
-              {glyph && <span className="ml-1 font-bold text-green-500">{nagToSymbol(glyph)}</span>}
+              {glyph && (
+                <span
+                  className="ml-1 font-bold text-green-500"
+                  title={Object.values(momentAnnotations).flat().find((item) => item.nag === glyph)?.label}
+                >
+                  {nagToSymbol(glyph)}
+                </span>
+              )}
               {shapes && <Shape extraClass="ml-2" />}
             </div>
             {isWhiteMove && shouldShowAddOn && moment.fen !== lastMoment?.fen && (
