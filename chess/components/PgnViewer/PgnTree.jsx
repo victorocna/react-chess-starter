@@ -5,7 +5,7 @@ import { isFunction, last, omit } from 'lodash';
 import { Fragment, useEffect, useMemo, useRef } from 'react';
 import { Comment, Move, Shape } from '.';
 
-const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
+const PgnTree = ({ tree, current, onMoveClick, onRightClick, autoScroll = true }) => {
   const containerRef = useRef();
   const momentsDictionaryRef = useRef({});
 
@@ -13,13 +13,13 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
   const lastMoment = useMemo(() => last(last(tree)), [tree]);
 
   useEffect(() => {
-    if (containerRef.current && current?.index) {
+    if (autoScroll && containerRef.current && current?.index) {
       const childEl = momentsDictionaryRef.current[current?.index];
       if (childEl) {
         childEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-  }, [current?.index]);
+  }, [current?.index, autoScroll]);
 
   const showMomentAsGrid = (moment, inBlockIndex, block) => {
     const { move, fen, index, shapes, comment, suffix, glyph } = moment;
@@ -69,7 +69,11 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick }) => {
               {glyph && (
                 <span
                   className="ml-1 font-bold text-green-500"
-                  title={Object.values(momentAnnotations).flat().find((item) => item.nag === glyph)?.label}
+                  title={
+                    Object.values(momentAnnotations)
+                      .flat()
+                      .find((item) => item.nag === glyph)?.label
+                  }
                 >
                   {nagToSymbol(glyph)}
                 </span>

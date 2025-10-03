@@ -11,6 +11,7 @@ const GameBoard = ({
   thinkTime = 1000,
   orientation = 'white',
   config,
+  onMove,
 }) => {
   const engine = useEngine();
 
@@ -33,6 +34,7 @@ const GameBoard = ({
       engine={engine}
       thinkTime={thinkTime}
       onGameOver={handleGameOver}
+      onMove={onMove}
     />
   );
 };

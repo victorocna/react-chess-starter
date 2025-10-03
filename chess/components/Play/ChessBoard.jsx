@@ -5,7 +5,7 @@ import { isFunction } from 'lodash';
 import { NextChessground } from 'next-chessground';
 import { useEffect, useRef } from 'react';
 
-const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerColor }) => {
+const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerColor, onMove }) => {
   const ref = useRef();
   const isEngineMoving = useRef(false);
   const { saveHistory } = useChessContext();
@@ -41,6 +41,10 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
     engine.toggleTurn();
     saveHistory(chess);
 
+    if (onMove && isFunction(onMove)) {
+      onMove(chess);
+    }
+
     if (chess.isGameOver()) {
       await onGameOver(chess);
       return engine.quit();
@@ -49,10 +53,16 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
     if (engine.turn) {
       const engineChess = await makeEngineMove(chess.fen());
 
-      if (engineChess && engineChess.isGameOver()) {
-        saveHistory(engineChess);
-        await onGameOver(engineChess);
-        return engine.quit();
+      if (engineChess) {
+        if (onMove && isFunction(onMove)) {
+          onMove(engineChess);
+        }
+
+        if (engineChess.isGameOver()) {
+          saveHistory(engineChess);
+          await onGameOver(engineChess);
+          return engine.quit();
+        }
       }
     }
 
@@ -65,10 +75,18 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
 
   // Handle initial engine move if engine should start first
   useEffect(() => {
-    if (engine.shouldMoveFirst(fen, playerColor)) {
-      engine.toggleTurn();
-      makeEngineMove(fen);
-    }
+    const handleInitialMove = async () => {
+      if (engine.shouldMoveFirst(fen, playerColor)) {
+        engine.toggleTurn();
+        const engineChess = await makeEngineMove(fen);
+
+        if (engineChess && onMove && isFunction(onMove)) {
+          onMove(engineChess);
+        }
+      }
+    };
+
+    handleInitialMove();
   }, [engine, fen, playerColor]);
 
   return (

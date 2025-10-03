@@ -16,13 +16,16 @@ export const ChessProvider = ({ children, fen }) => {
     setIsUserTurn(() => currentTurn === initialTurn);
   }, [currentTurn]);
 
-  // Game history
+  // Game history and PGN
   const [history, setHistory] = useState([]);
-  // Add a move to history
+  const [pgn, setPgn] = useState('');
+
+  // Add a move to history and update PGN
   const saveHistory = (chess) => {
     setCurrentFen(chess.fen());
     setCurrentTurn(chess.turn());
     setHistory(chess.history({ verbose: true }));
+    setPgn(chess.pgn());
   };
 
   const value = {
@@ -31,7 +34,9 @@ export const ChessProvider = ({ children, fen }) => {
     currentFen,
     isUserTurn,
     history,
+    pgn,
     setHistory,
+    setPgn,
     saveHistory,
   };
 
