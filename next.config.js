@@ -4,6 +4,7 @@ const headers = require('./headers');
 module.exports = {
   env: {
     FONT_AWESOME_KEY: process.env.FONT_AWESOME_KEY,
+    MAIA_API: process.env.MAIA_API,
   },
   eslint: {
     ignoreDuringBuilds: true,

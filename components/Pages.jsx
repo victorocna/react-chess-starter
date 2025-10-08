@@ -19,7 +19,10 @@ const Pages = () => {
         PGN editor
       </MenuItem>
       <MenuItem href="/play" level="1">
-        Play computer
+        Play Stockfish
+      </MenuItem>
+      <MenuItem href="/play-maia" level="1">
+        Play Maia
       </MenuItem>
       <MenuItem href="/show-threat" level="1">
         Show threats

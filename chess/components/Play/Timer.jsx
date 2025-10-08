@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef } from 'react';
-import { format } from 'date-fns';
 import { classnames } from '@lib';
+import { format } from 'date-fns';
+import { useEffect, useRef, useState } from 'react';
 
-const Timer = ({ initialTime = 180, isActive = false, increment = 0, onTimeOut }) => {
+const Timer = ({ initialTime = 180, isActive = false, increment = 0, onTimeOut, onTimeUpdate }) => {
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const wasActive = useRef(isActive);
   const hasTimedOut = useRef(false);
@@ -11,6 +11,13 @@ const Timer = ({ initialTime = 180, isActive = false, increment = 0, onTimeOut }
     setTimeLeft(initialTime);
     hasTimedOut.current = false;
   }, [initialTime]);
+
+  // Notify parent of time changes
+  useEffect(() => {
+    if (onTimeUpdate) {
+      onTimeUpdate(timeLeft);
+    }
+  }, [timeLeft, onTimeUpdate]);
 
   // Handle countdown when timer is active
   useEffect(() => {

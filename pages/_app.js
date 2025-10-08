@@ -1,12 +1,13 @@
 import { ScreenSizeInfo, Toaster } from '@components';
 import { sitename } from '@site.config';
 import Head from 'next/head';
+import { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import '../css/index.css';
 
 const Root = (props) => {
   const { Component, pageProps } = props;
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
     <>
