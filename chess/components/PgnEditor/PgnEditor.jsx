@@ -37,6 +37,7 @@ const PgnEditor = ({ tree, variations, variationProps, current, onMoveClick, set
         current={current}
         onMoveClick={onMoveClick}
         onRightClick={handleRightClick}
+        autoScroll={false}
       />
       {variations && (
         <div

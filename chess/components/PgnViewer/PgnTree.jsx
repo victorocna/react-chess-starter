@@ -1,7 +1,7 @@
-import { getMoveNumber, isMoveActive, nagToSymbol } from '@chess/functions';
 import { momentAnnotations } from '@chess/constants/moment-annotations';
+import { getMoveNumber, isMoveActive, nagToSymbol } from '@chess/functions';
 import { classnames } from '@lib';
-import { isFunction, last, omit } from 'lodash';
+import { flatMap, isFunction, last, omit } from 'lodash';
 import { Fragment, useEffect, useMemo, useRef } from 'react';
 import { Comment, Move, Shape } from '.';
 
@@ -69,11 +69,7 @@ const PgnTree = ({ tree, current, onMoveClick, onRightClick, autoScroll = true }
               {glyph && (
                 <span
                   className="ml-1 font-bold text-green-500"
-                  title={
-                    Object.values(momentAnnotations)
-                      .flat()
-                      .find((item) => item.nag === glyph)?.label
-                  }
+                  title={flatMap(momentAnnotations).find((item) => item.nag === glyph)?.label}
                 >
                   {nagToSymbol(glyph)}
                 </span>

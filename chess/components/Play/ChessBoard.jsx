@@ -17,25 +17,27 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
 
   // Make the engine move on the chess board
   const makeEngineMove = async (fen) => {
-    if (!engine || !ref.current) return null;
+    if (!engine || !ref.current) return false;
 
     await engine.set_position(fen);
     const nextMove = engineMove(await engine.go_time(thinkTime));
 
-    if (nextMove && isFunction(ref?.current?.board?.move)) {
+    if (nextMove && isFunction(ref?.current?.move)) {
       isEngineMoving.current = true;
-      const engineChess = ref.current.board.move(nextMove.from, nextMove.to);
-      isEngineMoving.current = false;
-      return engineChess;
+      const moveResult = ref.current.move(nextMove.from, nextMove.to, nextMove.promotion);
+
+      return moveResult !== false;
     }
 
-    return null;
+    return false;
   };
 
   // Handles both user moves and engine moves
   const handleMove = async (chess) => {
-    if (isEngineMoving.current) {
-      return;
+    const wasEngineMoveCallback = isEngineMoving.current;
+
+    if (wasEngineMoveCallback) {
+      isEngineMoving.current = false;
     }
 
     engine.toggleTurn();
@@ -50,20 +52,12 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
       return engine.quit();
     }
 
+    if (wasEngineMoveCallback) {
+      return;
+    }
+
     if (engine.turn) {
-      const engineChess = await makeEngineMove(chess.fen());
-
-      if (engineChess) {
-        if (onMove && isFunction(onMove)) {
-          onMove(engineChess);
-        }
-
-        if (engineChess.isGameOver()) {
-          saveHistory(engineChess);
-          await onGameOver(engineChess);
-          return engine.quit();
-        }
-      }
+      await makeEngineMove(chess.fen());
     }
 
     // Execute premove if available
@@ -78,11 +72,7 @@ const ChessBoard = ({ fen, orientation, engine, thinkTime, onGameOver, playerCol
     const handleInitialMove = async () => {
       if (engine.shouldMoveFirst(fen, playerColor)) {
         engine.toggleTurn();
-        const engineChess = await makeEngineMove(fen);
-
-        if (engineChess && onMove && isFunction(onMove)) {
-          onMove(engineChess);
-        }
+        await makeEngineMove(fen);
       }
     };
 
