@@ -15,6 +15,8 @@ export { default as getMoveNumber } from './get-move-number';
 export { default as getMoveSuffix } from './get-move-suffix';
 export { default as getNextMoment } from './get-next-moment';
 export { default as getNextShape } from './get-next-shape';
+export { default as getPositionAfterMoves } from './get-position-after-moves';
+export { default as getRangeBackgroundStyle } from './get-range-background-style';
 export { default as goodMove } from './good-move';
 export { default as isMoveActive } from './is-move-active';
 export { default as isValidPgn } from './is-valid-pgn';

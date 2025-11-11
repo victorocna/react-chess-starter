@@ -58,3 +58,27 @@
 #load-pgn-button {
   /* Overrides for the load PGN button */
 }
+#engine-analysis-header {
+  /* Overrides for the engine analysis header */
+}
+#engine-analysis {
+  /* Overrides for the engine analysis container */
+}
+#engine-settings-button {
+  /* Overrides for the engine settings button */
+}
+#engine-settings-menu {
+  /* Overrides for the engine settings menu */
+}
+#engine-pv-row {
+  /* Overrides for the engine PV row */
+}
+#engine-progress-bar {
+  /* Overrides for the engine progress bar */
+}
+#engine-range-slider {
+  /* Overrides for the engine range slider */
+}
+#engine-memory-slider {
+  /* Overrides for the engine memory slider */
+}

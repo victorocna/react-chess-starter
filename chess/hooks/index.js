@@ -8,6 +8,7 @@ export { default as useMainline } from './use-mainline';
 export { default as useMoveArrow } from './use-move-arrow';
 export { default as useMoveTrainer } from './use-move-trainer';
 export { default as usePgnViewer } from './use-pgn-viewer';
+export { default as usePreviewPosition } from './use-preview-position';
 export { default as useShapes } from './use-shapes';
 export { default as useThreat } from './use-threat';
 export { default as useVariationArrows } from './use-variation-arrows';

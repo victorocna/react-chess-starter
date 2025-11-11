@@ -5,7 +5,7 @@ import parseFen from './parse-fen';
  * Formats PV (Principal Variation) moves with proper chess notation numbering
  * @param {string} position - FEN string representing the current position
  * @param {string} pvString - Space-separated string of moves in UCI or SAN format
- * @returns {string} Formatted move sequence with proper numbering (e.g., "1. e4 e5 2. Nf3")
+ * @returns {Array} Array of move objects with move, moveNumber, and isWhite properties
  */
 const formatPvMoves = (position, pvString) => {
   const game = new Chess(position);
@@ -24,45 +24,35 @@ const formatPvMoves = (position, pvString) => {
   // Use parseFen to get position info
   const fenInfo = parseFen(position);
   if (!fenInfo) {
-    return ''; // Invalid FEN
+    return []; // Invalid FEN
   }
 
   const whiteToMove = fenInfo.activeColor === 'w';
   let moveNumber = fenInfo.fullmoveNumber;
-  let displayPv = '';
+  const formattedMoves = [];
 
   const history = game.history();
   if (history.length === 0) {
-    return '';
+    return [];
   }
 
-  // Format the first move
-  if (whiteToMove) {
-    displayPv += `${moveNumber}. ${history[0]}`;
-  } else {
-    displayPv += `${moveNumber}... ${history[0]}`;
+  for (let i = 0; i < history.length; i++) {
+    const isWhite = whiteToMove ? i % 2 === 0 : i % 2 === 1;
+    const currentMoveNumber = whiteToMove
+      ? moveNumber + Math.floor(i / 2)
+      : i === 0
+      ? moveNumber
+      : moveNumber + Math.floor((i + 1) / 2);
+
+    formattedMoves.push({
+      move: history[i],
+      moveNumber: currentMoveNumber,
+      isWhite,
+      showNumber: isWhite || i === 0,
+    });
   }
 
-  // Format subsequent moves
-  for (let i = 1; i < history.length; i++) {
-    if (whiteToMove) {
-      if (i % 2 === 1) {
-        displayPv += ` ${history[i]}`;
-      } else {
-        moveNumber++;
-        displayPv += ` ${moveNumber}. ${history[i]}`;
-      }
-    } else {
-      if (i % 2 === 0) {
-        displayPv += ` ${history[i]}`;
-      } else {
-        moveNumber++;
-        displayPv += ` ${moveNumber}. ${history[i]}`;
-      }
-    }
-  }
-
-  return displayPv;
+  return formattedMoves;
 };
 
 export default formatPvMoves;

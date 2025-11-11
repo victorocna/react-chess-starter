@@ -24,6 +24,9 @@ const Pages = () => {
       <MenuItem href="/show-threat" level="1">
         Show threats
       </MenuItem>
+       <MenuItem href="/engine-analysis" level="1">
+        Engine analysis
+      </MenuItem>
     </>
   );
 };

@@ -7109,10 +7109,12 @@ class Stockfish {
       window.chessEngineWorker = new Worker(worker);
     }
     this.skillLevel = 20;
-    this.maxDepth = 40;
+    this.maxDepth = 25;
+    this.maxNodes = 2250000; // 2.25M nodes (like Lichess NNUE)
     this.resolveTimeout = null;
     this.isAnalyzing = false;
     this.fen = constants.initialFen;
+    this.hashSize = 256; // Default hash size in MB
   }
   getTurnFromFen(fen) {
     return fen.split(' ')[1];
@@ -7165,6 +7167,7 @@ class Stockfish {
   async init() {
     await this.use_uci();
     await this.is_ready();
+    this.set_hash(this.hashSize);
     this.setSkillLevel();
   }
   getScoreFromInfo(msg) {
@@ -7198,11 +7201,28 @@ class Stockfish {
     if (data.indexOf(' pv ') > -1) {
       pv = data.split(' pv ')[1].split(' bmc ')[0];
     }
+
+    // Extract multipv if present
+    let multipv = 1;
+    const multipvMatch = data.match(/multipv (\d+)/);
+    if (multipvMatch) {
+      multipv = parseInt(multipvMatch[1], 10);
+    }
+
+    // Extract nodes if present
+    let nodes = 0;
+    const nodesMatch = data.match(/nodes (\d+)/);
+    if (nodesMatch) {
+      nodes = parseInt(nodesMatch[1], 10);
+    }
+
     const score = this.getScoreFromInfo(data);
     return {
-      depth,
+      depth: parseInt(depth, 10),
       pv,
       score,
+      multipv,
+      nodes,
     };
   }
   use_uci() {
@@ -7240,6 +7260,10 @@ class Stockfish {
   }
   set_multipv(numPv) {
     window.chessEngineWorker.postMessage('setoption name MultiPV value ' + numPv);
+  }
+  set_hash(hashSize) {
+    this.hashSize = hashSize;
+    window.chessEngineWorker.postMessage('setoption name Hash value ' + hashSize);
   }
   get_score(fen, depth = 15) {
     return new Promise((resolve) => {
@@ -7290,12 +7314,22 @@ class Stockfish {
   go_infinite(callback) {
     window.chessEngineWorker.postMessage('go infinite');
     this.isAnalyzing = true;
+    const lineNodes = {}; // Track nodes per MultiPV line
     window.chessEngineWorker.onmessage = (message) => {
       if (this.isInfoMessage(message) && typeof callback === 'function') {
         const msgData = this.parseData(message.data);
-        if (msgData.depth > this.maxDepth) {
+
+        // Track nodes for this specific MultiPV line
+        if (msgData.multipv) {
+          lineNodes[msgData.multipv] = msgData.nodes;
+        }
+
+        // Check if the first line (multipv 1) exceeded limits
+        const firstLineNodes = lineNodes[1] || 0;
+        if (firstLineNodes > this.maxNodes || msgData.depth > this.maxDepth) {
           this.stop();
         }
+
         callback(msgData);
       }
     };
@@ -7303,7 +7337,7 @@ class Stockfish {
   stop() {
     return new Promise((resolve) => {
       if (!this.isAnalyzing) {
-        resolve();
+        return resolve();
       }
       window.chessEngineWorker.postMessage('stop');
       window.chessEngineWorker.onmessage = (message) => {
@@ -7321,8 +7355,9 @@ class Stockfish {
     // Engine should move first if:
     // - Player chose black pieces and it's white's turn to move
     // - Player chose white pieces and it's black's turn to move
-    return (playerColor === 'black' && isWhiteToMove) ||
-           (playerColor === 'white' && !isWhiteToMove);
+    return (
+      (playerColor === 'black' && isWhiteToMove) || (playerColor === 'white' && !isWhiteToMove)
+    );
   }
   quit() {
     window.chessEngineWorker.postMessage('quit');
