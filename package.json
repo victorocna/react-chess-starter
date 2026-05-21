@@ -60,6 +60,9 @@
     "eslint": "^7.25.0",
     "eslint-plugin-react": "^7.23.2",
     "pino-pretty": "^4.7.1",
-    "postcss": "^8.4.31"
+    "postcss": "^8.5.15"
+  },
+  "overrides": {
+    "postcss": "^8.5.15"
   }
 }
