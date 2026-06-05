@@ -7,9 +7,9 @@ import { NextChessground } from 'next-chessground';
 import { useEffect } from 'react';
 
 const PlayLayout = ({ handleGameOver, handleGameStart, elo, timeControl }) => {
-  const { history, initialFen, isUserTurn, pgn } = useChessContext();
+  const { history, initialFen, isUserTurn } = useChessContext();
 
-  const { tree, current, goToMoment, onUserMove: onMove, lastMoment } = usePgnViewer(pgn);
+  const { tree, current, goToMoment, onUserMove: onMove, lastMoment } = usePgnViewer('');
 
   // Track when the first move is made to detect game start
   useEffect(() => {
