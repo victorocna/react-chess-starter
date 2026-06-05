@@ -1,8 +1,8 @@
-import { Stockfish } from '@chess/stockfish/stockfish-wrapper';
+import { Stockfish } from '@chess/stockfish/stockfish-wrapper-wasm';
 import { useEffect, useState } from 'react';
 
 const useEngine = () => {
-  const [engine] = useState(new Stockfish('/stockfish.asm.js'));
+  const [engine] = useState(new Stockfish());
 
   // chess engine
   useEffect(() => {
