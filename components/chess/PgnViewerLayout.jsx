@@ -1,13 +1,15 @@
 import { PgnNavigator } from '@chess/components';
 import { MoveModal, PgnTree } from '@chess/components/PgnViewer';
 import { useEqualHeight, usePgnViewer, useShapes } from '@chess/hooks';
+import { AnalysisIcon } from '@components/chess';
 import { NextChessground } from 'next-chessground';
 
 const PgnViewerLayout = ({ pgn, games, currentGameIndex, onGameSelect }) => {
   const {
-    tree, //
+    tree,
     current,
     lastMove,
+    orientation,
     variations,
     goToMoment,
     onUserMove,
@@ -23,9 +25,15 @@ const PgnViewerLayout = ({ pgn, games, currentGameIndex, onGameSelect }) => {
         <div ref={sourceRef} className="relative w-full">
           <NextChessground
             fen={current.fen}
+            orientation={orientation}
             shapes={shapes}
             lastMove={lastMove}
             onMove={onUserMove}
+          />
+          <AnalysisIcon
+            boardOrientation={orientation}
+            suffix={current?.suffix}
+            lastMove={lastMove?.[1]}
           />
         </div>
       </div>

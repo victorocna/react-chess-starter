@@ -1,4 +1,5 @@
 export { default as addAnnotation } from './add-annotation';
+export { default as buildPgnMobileStrip } from './build-pgn-mobile-strip';
 export { default as addComment } from './add-comment';
 export { default as badMove } from './bad-move';
 export { default as checkDrillMove } from './check-drill-move';

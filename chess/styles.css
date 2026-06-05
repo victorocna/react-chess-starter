@@ -31,8 +31,13 @@
 #switch-drill-mode {
   /* Overrides for the switch drill mode */
 }
-#pgn-comment {
-  /* Overrides for the PGN comment */
+#pgn-comment,
+#pgn-comment * {
+  font-family: 'Noto Sans', sans-serif !important;
+  font-weight: 400 !important;
+  line-height: normal !important;
+  font-size: 12px !important;
+  color: #222 !important;
 }
 #pgn-move {
   /* Overrides for the PGN move */

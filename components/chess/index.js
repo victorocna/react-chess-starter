@@ -1,3 +1,4 @@
+export { default as AnalysisIcon } from './AnalysisIcon';
 export { default as AnalysisLayout } from './AnalysisLayout';
 export { default as DrillLayout } from './DrillLayout';
 export { default as PgnEditorLayout } from './PgnEditorLayout';
